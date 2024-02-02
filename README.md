@@ -1,7 +1,7 @@
 # Team 11
 
 ## Project Description
-Project description here.
+Instead of searching and filtering a large amount of unusable information from Reddit and LinkedIn, we provide an alternate, exclusive system that allows University of Waterloo students to connect with alumnis from the University of Waterloo.
 
 [Link to Wiki](https://git.uwaterloo.ca/e2roth/Team-11/-/wikis/Project-Proposal)
 
