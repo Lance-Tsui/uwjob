@@ -6,8 +6,18 @@ Project description here.
 [Link to Wiki](https://git.uwaterloo.ca/e2roth/Team-11/-/wikis/Project-Proposal)
 
 ## Essential Product Features
- - Android app (maybe web app?)
- - 
+Android app
+
+1. User accounts
+2. User's profile page
+3. Other user's profile pages
+4. Keyword search
+5. Search filtering
+6. Comment function
+7. Networking event function
+8. Rating function
+9. ???
+10. ???
 
 
 
