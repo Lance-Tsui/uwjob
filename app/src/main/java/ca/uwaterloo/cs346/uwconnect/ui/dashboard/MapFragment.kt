@@ -18,8 +18,8 @@ class MapFragment : DashboardFragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize the map fragment
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
-        mapFragment?.getMapAsync(this)
+        // val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
+        // mapFragment?.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
