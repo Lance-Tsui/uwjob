@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+open class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
