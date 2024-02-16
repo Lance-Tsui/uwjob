@@ -1,0 +1,39 @@
+CREATE TABLE Companies (
+    cid int NOT NULL,
+    name varchar(255),
+    PRIMARY KEY (cid)
+);
+
+CREATE TABLE Info (
+    cid int NOT NULL,
+    uid int NOT NULL,
+    position varchar(255),
+    rating float,
+    FOREIGN KEY (cid) REFERENCES Companies(cid)
+);
+
+CREATE TABLE Benefits (
+    cid int NOT NULL,
+    uid int NOT NULL,
+    insurance int,
+    housing int,
+    transportation int,
+    FOREIGN KEY (cid) REFERENCES Companies(cid)
+);
+
+CREATE TABLE Interview (
+    cid int NOT NULL,
+    uid int NOT NULL,
+    difficulty float,
+    experience_rating float,
+    FOREIGN KEY (cid) REFERENCES Companies(cid)
+);
+
+CREATE TABLE Requirements (
+    cid int NOT NULL,
+    uid int NOT NULL,
+    security_clearance int,
+    SWPP int,
+    transportation varchar(255),
+    FOREIGN KEY (cid) REFERENCES Companies(cid)
+);
