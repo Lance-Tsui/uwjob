@@ -4,41 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
+import ca.uwaterloo.cs346.uwconnect.databinding.FragmentJobBinding
 
 class JobFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentJobBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentJobBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 示例：设置Job信息
-        val job = Job(
-            title = "Android Developer",
-            description = "Develop and maintain Android applications.",
-            requirements = listOf("Kotlin", "Android Studio", "Git", "MVVM"),
-            salaryRange = "$80,000 - $120,000",
-            isRemote = true
-        )
-        displayJobInfo(job)
+        val job = arguments?.getSerializable("job") as Job?
+        job?.let {
+            displayJobDetails(it)
+        }
     }
 
-    private fun displayJobInfo(job: Job) {
-        // 这里更新UI组件显示Job信息
-        binding.textViewJobTitle.text = job.title
-        binding.textViewJobDescription.text = job.description
-        // 根据需要添加更多UI更新
+    private fun displayJobDetails(job: Job) {
+        binding.jobTitle.text = job.title
+        binding.jobDescription.text = job.description
+        binding.jobRequirements.text = job.requirements.joinToString(separator = "\n")
+        binding.jobSalaryRange.text = job.salaryRange
+        binding.jobIsRemote.text = if (job.isRemote) "Remote" else "On-site"
     }
 
     override fun onDestroyView() {

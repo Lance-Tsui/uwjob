@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ca.uwaterloo.cs346.uwconnect.R
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
 
 open class DashboardFragment : Fragment() {
@@ -28,13 +29,28 @@ open class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         val root: View = binding.root
-        /*
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val existingFragment = childFragmentManager.findFragmentByTag("job_fragment_container")
+        val jobInstance = Job(
+            "Software Engineer",
+            "Develop software",
+            listOf("Kotlin", "Java"),
+            "$70,000 - $100,000",
+            true
+        )
+
+        if (existingFragment == null) {
+            // Create and add the JobFragment
+            val jobFragment = JobFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("job", jobInstance)
+                }
+            }
+            childFragmentManager.beginTransaction()
+                .replace(R.id.job_fragment_container, jobFragment)
+                .commit()
         }
-        */
         return root
+
     }
 
     override fun onDestroyView() {
