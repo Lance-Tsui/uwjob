@@ -7,9 +7,9 @@
 
     <!-- 其他DashboardFragment的布局内容 -->
 
-    <fragment
+    <FrameLayout
         android:id="@+id/job_fragment_container"
-        android:name="ca.uwaterloo.cs346.uwconnect.ui.dashboard.JobFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </FrameLayout>
