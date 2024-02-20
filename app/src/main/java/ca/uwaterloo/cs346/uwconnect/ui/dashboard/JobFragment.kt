@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentJobBinding
+import com.google.android.material.chip.Chip
 
 class JobFragment : Fragment() {
 
@@ -31,7 +32,13 @@ class JobFragment : Fragment() {
     private fun displayJobDetails(job: Job) {
         binding.jobTitle.text = job.title
         binding.jobDescription.text = job.description
-        binding.jobRequirements.text = job.requirements.joinToString(separator = "\n")
+        job.requirements.forEach { requirement ->
+            val chip = Chip(context).apply {
+                text = requirement
+                isClickable = false
+            }
+            binding.jobRequirements.addView(chip)
+        }
         binding.jobSalaryRange.text = job.salaryRange
         binding.jobIsRemote.text = if (job.isRemote) "Remote" else "On-site"
     }

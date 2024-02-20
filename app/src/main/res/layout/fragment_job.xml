@@ -24,11 +24,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"/>
 
-        <TextView
+        <com.google.android.material.chip.ChipGroup
             android:id="@+id/jobRequirements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
+            app:singleLine="false"
+            app:chipSpacing="8dp">
+
+        </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/jobSalaryRange"
