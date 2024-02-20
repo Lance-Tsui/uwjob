@@ -33,11 +33,15 @@
 
         </com.google.android.material.chip.ChipGroup>
 
-        <TextView
+        <ProgressBar
             android:id="@+id/jobSalaryRange"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:max="100"
+        />
+
 
     </LinearLayout>
 
