@@ -31,11 +31,10 @@ open class DashboardFragment : Fragment() {
         val root: View = binding.root
         val existingFragment = childFragmentManager.findFragmentByTag("job_fragment_container")
         val jobInstance = Job(
-            "Software Engineer",
-            "Develop software",
+            "X for Elon Musk",
+            "Full Stack Developer",
             listOf("Kotlin", "Java"),
-            "$70,000 - $100,000",
-            true
+            "$70,000 - $100,000"
         )
 
         if (existingFragment == null) {

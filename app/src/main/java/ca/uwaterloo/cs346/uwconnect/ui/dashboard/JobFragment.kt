@@ -40,7 +40,6 @@ class JobFragment : Fragment() {
             binding.jobRequirements.addView(chip)
         }
         binding.jobSalaryRange.text = job.salaryRange
-        binding.jobIsRemote.text = if (job.isRemote) "Remote" else "On-site"
     }
 
     override fun onDestroyView() {

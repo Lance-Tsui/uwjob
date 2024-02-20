@@ -6,6 +6,5 @@ data class Job(
     val title: String,
     val description: String,
     val requirements: List<String>,
-    val salaryRange: String,
-    val isRemote: Boolean
+    val salaryRange: String
 ) : Serializable
