@@ -42,17 +42,34 @@
         android:max="100"
         app:layout_constraintTop_toBottomOf="@id/jobRequirements"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ratingText"
+        app:layout_constraintEnd_toStartOf="@id/ratingCircle"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
-    <TextView
-        android:id="@+id/ratingText"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/ratingCircle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rating: 80%"
+        app:indicatorSize="80dp"
+        app:trackThickness="4dp"
+        app:indicatorColor="#00ccff"
+        android:progress="75"
+        android:rotation="90"
         app:layout_constraintTop_toTopOf="@id/jobTitle"
         app:layout_constraintBottom_toBottomOf="@id/jobRequirements"
-        app:layout_constraintStart_toEndOf="@id/jobSalaryRange"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/jobSalaryRange"/>
+
+    <!-- TextView to display the progress -->
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="75%"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        app:layout_constraintBottom_toBottomOf="@id/ratingCircle"
+        app:layout_constraintEnd_toEndOf="@id/ratingCircle"
+        app:layout_constraintStart_toStartOf="@id/ratingCircle"
+        app:layout_constraintTop_toTopOf="@id/ratingCircle" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
