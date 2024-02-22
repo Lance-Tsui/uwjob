@@ -45,6 +45,16 @@
         app:layout_constraintEnd_toStartOf="@id/ratingCircle"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
+    <TextView
+        android:id="@+id/jobSalaryText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Salary: 85k"
+        app:layout_constraintTop_toBottomOf="@id/jobSalaryRange"
+        app:layout_constraintStart_toStartOf="@id/jobSalaryRange"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/ratingCircle"
         android:layout_width="wrap_content"

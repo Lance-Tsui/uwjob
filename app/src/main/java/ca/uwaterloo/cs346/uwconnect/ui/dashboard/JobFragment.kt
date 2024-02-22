@@ -1,5 +1,6 @@
 package ca.uwaterloo.cs346.uwconnect.ui.dashboard
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,7 @@ class JobFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun displayJobDetails(job: Job) {
         // job title
         binding.jobTitle.text = job.title
@@ -59,7 +61,11 @@ class JobFragment : Fragment() {
             progressBar.max = MAX_SALARY - MIN_SALARY // set up progress bar range
             progressBar.progress = avgSalary // current progress ui set up
 
+            binding.jobSalaryText.text = "Salary: $avgSalary"
+
         }
+
+
     }
 
     override fun onDestroyView() {
