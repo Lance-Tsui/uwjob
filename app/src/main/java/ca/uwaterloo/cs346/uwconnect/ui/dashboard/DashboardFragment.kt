@@ -48,6 +48,23 @@ open class DashboardFragment : Fragment() {
                 .replace(R.id.job_fragment_container, jobFragment)
                 .commit()
         }
+
+
+        val commentInstance = Comment(
+            "Blahaj", "comment"
+        )
+
+        val existingCommentFragment = childFragmentManager.findFragmentByTag("comment_fragment_container")
+        if (existingCommentFragment == null) {
+            val commentFragment = CommentFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("comment", commentInstance)
+                }
+            }
+            childFragmentManager.beginTransaction()
+                .replace(R.id.comment_fragment_container, commentFragment)
+                .commit()
+        }
         return root
 
     }
