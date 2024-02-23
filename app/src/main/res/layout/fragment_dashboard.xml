@@ -10,7 +10,8 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:iconifiedByDefault="false" />
+        android:background="#D3D3D3"
+        android:iconifiedByDefault="true" />
 
     <FrameLayout
         android:id="@+id/job_fragment_container"

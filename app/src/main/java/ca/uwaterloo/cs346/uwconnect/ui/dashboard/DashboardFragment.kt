@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.uwaterloo.cs346.uwconnect.R
@@ -29,6 +29,13 @@ open class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         val root: View = binding.root
+
+        val searchView: SearchView = binding.searchView
+        searchView.setOnClickListener {
+            searchView.requestFocusFromTouch()
+            searchView.onActionViewExpanded()
+        }
+
         val existingFragment = childFragmentManager.findFragmentByTag("job_fragment_container")
         val jobInstance = Job(
             "X for Elon Musk",
