@@ -1,13 +1,14 @@
 package ca.uwaterloo.cs346.uwconnect.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.content.Context
+
 import androidx.lifecycle.ViewModel
+import ca.uwaterloo.cs346.uwconnect.ui.dashboard.DataUtils.parseJobData
 
 class DashboardViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    fun loadJobData(context: Context): JobData? {
+        val jsonString = DataUtils.loadJSONFromAsset(context)
+        return jsonString?.let { parseJobData(it) }
     }
-    val text: LiveData<String> = _text
+
 }

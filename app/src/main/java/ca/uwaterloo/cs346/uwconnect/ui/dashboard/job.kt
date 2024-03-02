@@ -2,9 +2,29 @@ package ca.uwaterloo.cs346.uwconnect.ui.dashboard
 
 import java.io.Serializable
 
+data class JobData(
+    val jobs: List<Job>,
+    val comments: List<Comment>,
+    val users: List<User>
+)
+
 data class Job(
-    val title: String,
-    val description: String,
-    val requirements: List<String>,
+    val id: Int,
+    val company: String,
+    val position: String,
+    val skills: List<String>,
+    val commentList: List<Int>,
     val salaryRange: String
-) : Serializable
+): Serializable
+
+data class Comment(
+    val id: Int,
+    val userid: Int,
+    val upvote: Boolean,
+    val comment: String
+)
+
+data class User(
+    val id: Int,
+    val username: String
+)

@@ -31,10 +31,10 @@ class CommentFragment : Fragment() {
 
     private fun displayCommentDetails(comment: Comment) {
         // comment title
-        binding.userName.text = comment.username
+        binding.userName.text = comment.userid.toString()
 
         // comment description
-        binding.userText.text = comment.usertext
+        binding.userText.text = comment.comment
     }
 
     override fun onDestroyView() {

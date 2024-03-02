@@ -36,16 +36,16 @@ class JobFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun displayJobDetails(job: Job) {
         // job title
-        binding.jobTitle.text = job.title
+        binding.jobTitle.text = job.company
 
         // job description
-        binding.jobDescription.text = job.description
+        binding.jobDescription.text = job.position
 
         // job details
         // making showing as tags
-        job.requirements.forEach { requirement ->
+        job.skills.forEach { skill ->
             val chip = Chip(context).apply {
-                text = requirement
+                text = skill
                 isClickable = false
             }
             binding.jobRequirements.addView(chip)
