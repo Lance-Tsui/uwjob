@@ -23,6 +23,14 @@
       "position": "Backend Developer",
       "skills": ["Python"],
       "salaryRange": "$80,000 - $100,000"
+    },
+
+    {
+      "id": 4,
+      "company": "Tesla",
+      "position": "Quality Assurance",
+      "skills": ["C", "C++"],
+      "salaryRange": "$80,000 - $100,000"
     }
   ],
   "comments": [

@@ -85,10 +85,10 @@ open class DashboardFragment : Fragment() {
 
     fun filterAndDisplayJobs(query: String) {
         // 假设jobData已经用从JSON加载的数据填充
-        val filteredJob = jobData?.jobs?.filter {
-            it.company.contains(query, ignoreCase = true) ||
-                    it.position.contains(query, ignoreCase = true) }
-        ?.firstOrNull()
+        val filteredJob = jobData?.jobs?.firstOrNull {
+            query.contains(it.company, ignoreCase = true) &&
+                    query.contains(it.position, ignoreCase = true)
+        }
 
         val jobInstance = Job(
             3,
