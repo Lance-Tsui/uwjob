@@ -48,10 +48,9 @@ open class DashboardFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (jobBlock == null) {
-                    query?.let { filterAndDisplayJobs(it) }
-                    // query?.let { filterAndDisplayComments(it)}
-                }
+
+                query?.let { filterAndDisplayJobs(it) }
+                query?.let { filterAndDisplayComments(it)}
 
                 return false
             }
@@ -91,8 +90,6 @@ open class DashboardFragment : Fragment() {
         jsonString?.let {
             jobData = DataUtils.parseJobData(it)
         }
-        // Now jobData holds your loaded and parsed job listings, ready for use
-        // You can update your UI here based on the loaded data
     }
 
     fun filterAndDisplayJobs(query: String) {
@@ -132,20 +129,24 @@ open class DashboardFragment : Fragment() {
                     query.contains(it.position, ignoreCase = true)
         }
 
-        if (filteredJob != null) {
-            val jobFragment = JobFragment().apply {
+        val jobComments = filteredJob?.commentList?.mapNotNull { commentId ->
+            jobData?.comments?.find { it.id == commentId } // Adjusted to access comments from jobData
+        }?.let { ArrayList(it) }
+
+
+        if (!jobComments.isNullOrEmpty()) {
+            val commentSection = CommentFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable("job", filteredJob) // 将 filteredJob 作为 Serializable 对象传递
+                    // Correctly pass jobComments as a Serializable object
+                    putSerializable("comment", jobComments[0])
                 }
             }
 
-            // 将 JobFragment 替换到 job_fragment_container 中
             childFragmentManager.beginTransaction()
-                .replace(R.id.job_fragment_container, jobFragment)
+                .replace(R.id.comment_fragment_container, commentSection)
                 .commit()
-        } else {
-            // 清除或隐藏职位信息的UI部分
+            }
+
         }
     }
 
-}

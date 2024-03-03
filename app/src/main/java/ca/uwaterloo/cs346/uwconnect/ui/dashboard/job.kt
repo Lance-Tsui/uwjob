@@ -22,7 +22,7 @@ data class Comment(
     val userid: Int,
     val upvote: Boolean,
     val comment: String
-)
+): Serializable
 
 data class User(
     val id: Int,
