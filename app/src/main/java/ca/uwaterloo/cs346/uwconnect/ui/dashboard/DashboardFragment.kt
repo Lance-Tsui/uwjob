@@ -42,19 +42,31 @@ open class DashboardFragment : Fragment() {
             searchView.onActionViewExpanded()
         }
 
-        val existingFragment = childFragmentManager.findFragmentByTag("job_fragment_container")
+        val jobBlock = childFragmentManager.findFragmentByTag("job_fragment_container")
+
+        val commentBlock = childFragmentManager.findFragmentByTag("comment_fragment_container")
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (existingFragment == null) {
+                if (jobBlock == null) {
                     query?.let { filterAndDisplayJobs(it) }
+                    // query?.let { filterAndDisplayComments(it)}
                 }
 
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // newText?.let { filterAndDisplayJobs(it) }
+                if (newText.isNullOrEmpty()) {
+                    val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
+                    if (existingSection != null) {
+                        // If a JobFragment exists, remove it
+                        childFragmentManager.beginTransaction()
+                            .remove(existingSection)
+                            .commit()
+                    }
+                }
+
                 return true
             }
         })
@@ -84,21 +96,41 @@ open class DashboardFragment : Fragment() {
     }
 
     fun filterAndDisplayJobs(query: String) {
-        // 假设jobData已经用从JSON加载的数据填充
         val filteredJob = jobData?.jobs?.firstOrNull {
             query.contains(it.company, ignoreCase = true) &&
                     query.contains(it.position, ignoreCase = true)
         }
 
-        val jobInstance = Job(
-            3,
-            "Full Stack Developer",
-            "veeva",
-            listOf("Kotlin", "Java"),
-            listOf(),
-            "$70,000 - $100,000"
-        )
+        if (filteredJob != null) {
+            val jobSection = JobFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("job", filteredJob) // Pass the filteredJob as a Serializable object
+                }
+            }
 
+            // Replace the JobFragment in the job_fragment_container
+            childFragmentManager.beginTransaction()
+                .replace(R.id.job_fragment_container, jobSection)
+                .commit()
+        } else {
+            // Attempt to find an existing JobFragment by container ID
+            val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
+            if (existingSection != null) {
+                // If a JobFragment exists, remove it
+                childFragmentManager.beginTransaction()
+                    .remove(existingSection)
+                    .commit()
+            }
+        }
+    }
+
+
+    fun filterAndDisplayComments(query: String) {
+        // 假设jobData已经用从JSON加载的数据填充
+        val filteredJob = jobData?.jobs?.firstOrNull {
+            query.contains(it.company, ignoreCase = true) &&
+                    query.contains(it.position, ignoreCase = true)
+        }
 
         if (filteredJob != null) {
             val jobFragment = JobFragment().apply {
