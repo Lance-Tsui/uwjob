@@ -31,7 +31,7 @@ class CommentFragment : Fragment() {
 
     private fun displayCommentDetails(comment: Comment) {
         // comment title
-        binding.userName.text = comment.userid.toString()
+        binding.userName.text = comment.username
 
         // comment description
         binding.userText.text = comment.comment

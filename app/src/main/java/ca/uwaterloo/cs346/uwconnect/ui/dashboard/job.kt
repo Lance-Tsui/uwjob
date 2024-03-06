@@ -20,6 +20,7 @@ data class Job(
 data class Comment(
     val id: Int,
     val userid: Int,
+    val username: String,
     val upvote: Boolean,
     val comment: String
 ): Serializable
@@ -27,4 +28,4 @@ data class Comment(
 data class User(
     val id: Int,
     val username: String
-)
+): Serializable

@@ -50,14 +50,15 @@ open class DashboardFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
                 query?.let { filterAndDisplayJobs(it) }
-                query?.let { filterAndDisplayComments(it)}
+                query?.let { filterAndDisplayComments(it) }
 
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
+                    val existingSection =
+                        childFragmentManager.findFragmentById(R.id.job_fragment_container)
                     if (existingSection != null) {
                         // If a JobFragment exists, remove it
                         childFragmentManager.beginTransaction()
@@ -101,7 +102,10 @@ open class DashboardFragment : Fragment() {
         if (filteredJob != null) {
             val jobSection = JobFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable("job", filteredJob) // Pass the filteredJob as a Serializable object
+                    putSerializable(
+                        "job",
+                        filteredJob
+                    ) // Pass the filteredJob as a Serializable object
                 }
             }
 
@@ -123,21 +127,27 @@ open class DashboardFragment : Fragment() {
 
 
     fun filterAndDisplayComments(query: String) {
-        // 假设jobData已经用从JSON加载的数据填充
+        // Assuming jobData is already populated from JSON
         val filteredJob = jobData?.jobs?.firstOrNull {
             query.contains(it.company, ignoreCase = true) &&
                     query.contains(it.position, ignoreCase = true)
         }
 
         val jobComments = filteredJob?.commentList?.mapNotNull { commentId ->
-            jobData?.comments?.find { it.id == commentId } // Adjusted to access comments from jobData
+            jobData?.comments?.find { it.id == commentId }?.let { comment ->
+                // Find the User associated with the comment
+                val user = jobData?.users?.find { it.id == comment.userid }
+                // Modify here to include username or user object in the comment data passed to the UI
+                comment.copy(
+                    username = user?.username ?: "Unknown"
+                ) // Assuming Comment class has a username field for display purposes
+            }
         }?.let { ArrayList(it) }
-
 
         if (!jobComments.isNullOrEmpty()) {
             val commentSection = CommentFragment().apply {
                 arguments = Bundle().apply {
-                    // Correctly pass jobComments as a Serializable object
+                    // Assuming jobComments is a list of modified comment objects with username included
                     putSerializable("comment", jobComments[0])
                 }
             }
@@ -145,8 +155,7 @@ open class DashboardFragment : Fragment() {
             childFragmentManager.beginTransaction()
                 .replace(R.id.comment_fragment_container, commentSection)
                 .commit()
-            }
-
         }
     }
+}
 
