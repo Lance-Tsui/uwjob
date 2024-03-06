@@ -22,6 +22,7 @@
       "company": "Tesla",
       "position": "Backend Developer",
       "skills": ["Python"],
+      "commentList": [2, 3],
       "salaryRange": "$80,000 - $100,000"
     },
 
@@ -39,12 +40,36 @@
       "userid": 1,
       "upvote": true,
       "comment": "comment"
+    },
+
+    {
+      "id": 2,
+      "userid": 2,
+      "upvote": true,
+      "comment": "twocomment"
+    },
+
+    {
+      "id": 3,
+      "userid": 2,
+      "upvote": true,
+      "comment": "threecomment"
     }
   ],
   "users": [
     {
       "id": 1,
       "username": "Blahaj"
+    },
+
+    {
+      "id": 2,
+      "username": "SadBlahaj"
+    },
+
+    {
+      "id": 3,
+      "username": "AnotherBlahaj"
     }
   ]
 }

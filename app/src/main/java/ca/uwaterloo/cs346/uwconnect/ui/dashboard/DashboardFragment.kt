@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -41,10 +42,6 @@ open class DashboardFragment : Fragment() {
             searchView.requestFocusFromTouch()
             searchView.onActionViewExpanded()
         }
-
-        val jobBlock = childFragmentManager.findFragmentByTag("job_fragment_container")
-
-        val commentBlock = childFragmentManager.findFragmentByTag("comment_fragment_container")
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -105,7 +102,7 @@ open class DashboardFragment : Fragment() {
                     putSerializable(
                         "job",
                         filteredJob
-                    ) // Pass the filteredJob as a Serializable object
+                    )
                 }
             }
 
@@ -127,7 +124,11 @@ open class DashboardFragment : Fragment() {
 
 
     fun filterAndDisplayComments(query: String) {
-        // Assuming jobData is already populated from JSON
+        val container = view?.findViewById<LinearLayout>(R.id.comment_fragment_container)
+        container?.removeAllViews() // Clear previous comments if any
+
+        val fragmentManager = childFragmentManager.beginTransaction()
+
         val filteredJob = jobData?.jobs?.firstOrNull {
             query.contains(it.company, ignoreCase = true) &&
                     query.contains(it.position, ignoreCase = true)
@@ -137,25 +138,23 @@ open class DashboardFragment : Fragment() {
             jobData?.comments?.find { it.id == commentId }?.let { comment ->
                 // Find the User associated with the comment
                 val user = jobData?.users?.find { it.id == comment.userid }
-                // Modify here to include username or user object in the comment data passed to the UI
-                comment.copy(
-                    username = user?.username ?: "Unknown"
-                ) // Assuming Comment class has a username field for display purposes
+                comment.copy(username = user?.username ?: "Unknown")
             }
-        }?.let { ArrayList(it) }
+        } ?: return // Return if null or empty
 
-        if (!jobComments.isNullOrEmpty()) {
-            val commentSection = CommentFragment().apply {
+        jobComments.forEachIndexed { index, comment ->
+            val commentFragment = CommentFragment().apply {
                 arguments = Bundle().apply {
-                    // Assuming jobComments is a list of modified comment objects with username included
-                    putSerializable("comment", jobComments[0])
+                    putSerializable("comment", comment)
                 }
             }
 
-            childFragmentManager.beginTransaction()
-                .replace(R.id.comment_fragment_container, commentSection)
-                .commit()
+            // This uses a unique tag for each fragment based on its index
+            fragmentManager.add(R.id.comment_fragment_container, commentFragment, "comment_$index")
         }
+
+        fragmentManager.commit()
     }
+
 }
 
