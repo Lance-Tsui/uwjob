@@ -135,12 +135,8 @@ open class DashboardFragment : Fragment() {
         }
 
         val jobComments = filteredJob?.commentList?.mapNotNull { commentId ->
-            jobData?.comments?.find { it.id == commentId }?.let { comment ->
-                // Find the User associated with the comment
-                val user = jobData?.users?.find { it.id == comment.userid }
-                comment.copy(username = user?.username ?: "Unknown")
-            }
-        } ?: return // Return if null or empty
+            jobData?.comments?.find { it.id == commentId }
+        } ?: return
 
         jobComments.forEachIndexed { index, comment ->
             val commentFragment = CommentFragment().apply {
@@ -148,13 +144,13 @@ open class DashboardFragment : Fragment() {
                     putSerializable("comment", comment)
                 }
             }
-
             // This uses a unique tag for each fragment based on its index
             fragmentManager.add(R.id.comment_fragment_container, commentFragment, "comment_$index")
         }
 
         fragmentManager.commit()
     }
+
 
 }
 
