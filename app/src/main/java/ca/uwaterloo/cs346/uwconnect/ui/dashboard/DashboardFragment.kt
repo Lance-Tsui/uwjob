@@ -54,12 +54,21 @@ open class DashboardFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    val existingSection =
+                    val jobSection =
                         childFragmentManager.findFragmentById(R.id.job_fragment_container)
-                    if (existingSection != null) {
+                    if (jobSection != null) {
                         // If a JobFragment exists, remove it
                         childFragmentManager.beginTransaction()
-                            .remove(existingSection)
+                            .remove(jobSection)
+                            .commit()
+                    }
+
+                    val commentSection =
+                        childFragmentManager.findFragmentById(R.id.comment_fragment_container)
+                    if (commentSection != null) {
+                        // If a JobFragment exists, remove it
+                        childFragmentManager.beginTransaction()
+                            .remove(commentSection)
                             .commit()
                     }
                 }
