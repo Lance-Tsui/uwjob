@@ -1,7 +1,7 @@
 # Team 11
 
 ## Project Description
-Instead of searching and filtering a large amount of unusable information from Reddit and LinkedIn, we provide an alternate, exclusive system that allows University of Waterloo students to connect with alumnis from the University of Waterloo.
+To aid University of Waterloo co-op students in their co-op job search, we provide this application where students can submit information and ratings for their past jobs for all to see, as well as connect with other students to expand their network. 
 
 [Link to Wiki](https://git.uwaterloo.ca/e2roth/Team-11/-/wikis/Project-Proposal)
 
@@ -11,13 +11,13 @@ Android app
 1. User accounts (login)
 2. User's profile page
 3. Other user's profile pages
-4. Profile tagging
-5. Keyword search
-6. Search filtering
-7. DMs
+4. Job rating pages
+5. Create and submit job ratings
+6. Keyword search
+7. Search filtering
 8. Comment function
-9. Networking event function
-10. Rating function
+9. DMs
+10. Networking event function
 
 ## Team Members
  - Ethan Roth, e2roth@uwaterloo.ca
