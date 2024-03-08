@@ -1,0 +1,77 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "company": "X",
+      "position": "Full Stack Developer",
+      "skills": ["Kotlin", "Java"],
+      "commentList": [1],
+      "salaryRange": "$70,000 - $100,000"
+    },
+
+    {
+      "id": 2,
+      "company": "X",
+      "position": "Backend Developer",
+      "skills": ["Kotlin", "Python"],
+      "commentList": [],
+      "salaryRange": "$60,000 - $100,000"
+    },
+
+    {
+      "id": 3,
+      "company": "Tesla",
+      "position": "Backend Developer",
+      "skills": ["Python"],
+      "commentList": [2, 3],
+      "salaryRange": "$80,000 - $100,000"
+    },
+
+    {
+      "id": 4,
+      "company": "Tesla",
+      "position": "Quality Assurance",
+      "skills": ["C", "C++"],
+      "commentList": [],
+      "salaryRange": "$80,000 - $100,000"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "userid": 1,
+      "upvote": true,
+      "comment": "comment"
+    },
+
+    {
+      "id": 2,
+      "userid": 2,
+      "upvote": true,
+      "comment": "twocomment"
+    },
+
+    {
+      "id": 3,
+      "userid": 2,
+      "upvote": true,
+      "comment": "threecomment"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Blahaj"
+    },
+
+    {
+      "id": 2,
+      "username": "SadBlahaj"
+    },
+
+    {
+      "id": 3,
+      "username": "AnotherBlahaj"
+    }
+  ]
+}
