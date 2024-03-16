@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ca.uwaterloo.cs346.uwconnect.MAX_SALARY
-import ca.uwaterloo.cs346.uwconnect.MIN_SALARY
+import ca.uwaterloo.cs346.uwconnect.common.MAX_SALARY
+import ca.uwaterloo.cs346.uwconnect.common.MIN_SALARY
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentJobBinding
 import com.google.android.material.chip.Chip
 import com.google.gson.Gson

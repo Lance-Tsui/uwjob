@@ -1,4 +1,4 @@
-package ca.uwaterloo.cs346.uwconnect
+package ca.uwaterloo.cs346.uwconnect.ui.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,8 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import ca.uwaterloo.cs346.uwconnect.MainActivity
+import ca.uwaterloo.cs346.uwconnect.R
 
 class LoginPage : AppCompatActivity() {
 
