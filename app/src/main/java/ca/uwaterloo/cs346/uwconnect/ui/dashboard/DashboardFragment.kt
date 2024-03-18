@@ -11,9 +11,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.uwaterloo.cs346.uwconnect.R
+import ca.uwaterloo.cs346.uwconnect.data.DatabaseRepository
+import ca.uwaterloo.cs346.uwconnect.data.DatabaseRepository.Companion.testDatabaseConnection
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
 
-import ca.uwaterloo.cs346.uwconnect.ui.dashboard.DataUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 open class DashboardFragment : Fragment() {
 
@@ -22,8 +27,6 @@ open class DashboardFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    var jobData: JobData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +50,6 @@ open class DashboardFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
                 query?.let { filterAndDisplayJobs(it) }
-                query?.let { filterAndDisplayComments(it) }
 
                 return false
             }
@@ -77,11 +79,6 @@ open class DashboardFragment : Fragment() {
             }
         })
 
-        context?.let {
-            loadJobData(it)
-        }
-
-
         return root
     }
 
@@ -90,48 +87,43 @@ open class DashboardFragment : Fragment() {
         _binding = null
     }
 
-    fun loadJobData(context: Context) {
-        // Load the JSON string from assets
-        val jsonString = DataUtils.loadJSONFromAsset(context)
-        // Parse the JSON string into your data model
-        jsonString?.let {
-            jobData = DataUtils.parseJobData(it)
-        }
-    }
-
     fun filterAndDisplayJobs(query: String) {
-        val filteredJob = jobData?.jobs?.firstOrNull {
-            query.contains(it.company, ignoreCase = true) &&
-                    query.contains(it.position, ignoreCase = true)
-        }
+        CoroutineScope(Dispatchers.IO).launch {
+            // Assuming getJobs now fetches jobs that could potentially match the query
+            val connectionSuccessful = testDatabaseConnection()
+            if (connectionSuccessful) {
+                Log.d("INFO", "Database connection successful.")
+            } else {
+                Log.d("INFO","Failed to establish database connection.")
+            }
+            val filteredJob = DatabaseRepository.getJob(query); // Fetch all jobs; consider implementing filtering directly in SQL for efficiency
+            withContext(Dispatchers.Main) {
+                if (filteredJob != null) {
+                    val jobSection = JobFragment().apply {
+                        arguments = Bundle().apply {
+                            putSerializable("job", filteredJob)
+                        }
+                    }
 
-        if (filteredJob != null) {
-            val jobSection = JobFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(
-                        "job",
-                        filteredJob
-                    )
+                    // Replace the JobFragment in the job_fragment_container
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.job_fragment_container, jobSection)
+                        .commit()
+                } else {
+                    // Attempt to find an existing JobFragment by container ID
+                    val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
+                    if (existingSection != null) {
+                        // If a JobFragment exists, remove it
+                        childFragmentManager.beginTransaction()
+                            .remove(existingSection)
+                            .commit()
+                    }
                 }
             }
-
-            // Replace the JobFragment in the job_fragment_container
-            childFragmentManager.beginTransaction()
-                .replace(R.id.job_fragment_container, jobSection)
-                .commit()
-        } else {
-            // Attempt to find an existing JobFragment by container ID
-            val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
-            if (existingSection != null) {
-                // If a JobFragment exists, remove it
-                childFragmentManager.beginTransaction()
-                    .remove(existingSection)
-                    .commit()
-            }
         }
     }
 
-
+    /*
     fun filterAndDisplayComments(query: String) {
         val container = view?.findViewById<LinearLayout>(R.id.comment_fragment_container)
         container?.removeAllViews() // Clear previous comments if any
@@ -159,7 +151,7 @@ open class DashboardFragment : Fragment() {
 
         fragmentManager.commit()
     }
-
+    */
 
 }
 

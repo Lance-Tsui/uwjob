@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ca.uwaterloo.cs346.uwconnect.data.model.Comment
 
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentCommentBinding
 class CommentFragment : Fragment() {

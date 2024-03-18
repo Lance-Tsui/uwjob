@@ -21,8 +21,4 @@ object DataUtils {
         return json
     }
 
-    fun parseJobData(jsonString: String): JobData? {
-        val gson = Gson()
-        return gson.fromJson(jsonString, JobData::class.java)
-    }
 }
