@@ -15,6 +15,11 @@ import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
 
 import ca.uwaterloo.cs346.uwconnect.ui.dashboard.DataUtils
 
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.SQLException
+
+
 open class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
@@ -46,9 +51,9 @@ open class DashboardFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
-                query?.let { filterAndDisplayJobs(it) }
-                query?.let { filterAndDisplayComments(it) }
-
+                // query?.let { filterAndDisplayJobs(it) }
+                // query?.let { filterAndDisplayComments(it) }
+                connectDatabase()
                 return false
             }
 
@@ -83,6 +88,35 @@ open class DashboardFragment : Fragment() {
         // Parse the JSON string into your data model
         jsonString?.let {
             jobData = DataUtils.parseJobData(it)
+        }
+    }
+
+    fun connectDatabase() {
+        val jdbcUrl = "jdbc:sqlserver://cs346server.database.windows.net:1433;database=JobInfo;encrypt=true;trustServerCertificate=false;hostNameInCertificate=.database.windows.net;loginTimeout=30;"
+        val username = "ourlogin@cs346server.database.windows.net"
+        val password = "ukgtKHGVCHTCjhgvkv%^65r^66657897"
+
+        var connection: Connection? = null
+
+        try {
+            // Attempt to establish a connection
+            connection = DriverManager.getConnection(jdbcUrl, username, password)
+            Log.d("INFO", "Connected to the SQL Server successfully.")
+
+            // You can add additional logic here to interact with the database
+            // For example, creating a Statement and executing a query
+
+        } catch (e: SQLException) {
+            Log.d("INFO", "Connection to the sql server failed")
+            e.printStackTrace()
+        } finally {
+            // Close the connection
+            try {
+                connection?.close()
+                Log.d("INFO", "Connection to sql server closed")
+            } catch (e: SQLException) {
+                e.printStackTrace()
+            }
         }
     }
 
