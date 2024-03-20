@@ -54,25 +54,12 @@ open class DashboardFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    val jobSection =
-                        childFragmentManager.findFragmentById(R.id.job_fragment_container)
-                    if (jobSection != null) {
-                        // If a JobFragment exists, remove it
-                        childFragmentManager.beginTransaction()
-                            .remove(jobSection)
-                            .commit()
+                    childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let {
+                        childFragmentManager.beginTransaction().remove(it).commit()
                     }
-
-                    val commentSection =
-                        childFragmentManager.findFragmentById(R.id.comment_fragment_container)
-                    if (commentSection != null) {
-                        // If a JobFragment exists, remove it
-                        childFragmentManager.beginTransaction()
-                            .remove(commentSection)
-                            .commit()
-                    }
+                    // 直接清空LinearLayout容器
+                    view?.findViewById<LinearLayout>(R.id.comment_fragment_container)?.removeAllViews()
                 }
-
                 return true
             }
         })
@@ -120,14 +107,11 @@ open class DashboardFragment : Fragment() {
                 .replace(R.id.job_fragment_container, jobSection)
                 .commit()
         } else {
-            // Attempt to find an existing JobFragment by container ID
-            val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
-            if (existingSection != null) {
-                // If a JobFragment exists, remove it
-                childFragmentManager.beginTransaction()
-                    .remove(existingSection)
-                    .commit()
+            childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let {
+                childFragmentManager.beginTransaction().remove(it).commit()
             }
+            // 直接清空LinearLayout容器
+            view?.findViewById<LinearLayout>(R.id.comment_fragment_container)?.removeAllViews()
         }
     }
 
