@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -51,9 +52,8 @@ open class DashboardFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
-                // query?.let { filterAndDisplayJobs(it) }
-                // query?.let { filterAndDisplayComments(it) }
-                connectDatabase()
+                query?.let { filterAndDisplayJobs(it) }
+                query?.let { filterAndDisplayComments(it) }
                 return false
             }
 
@@ -64,6 +64,8 @@ open class DashboardFragment : Fragment() {
                     }
                     // 直接清空LinearLayout容器
                     view?.findViewById<LinearLayout>(R.id.comment_fragment_container)?.removeAllViews()
+                } else {
+                    showSuggestions(newText);
                 }
                 return true
             }
@@ -76,6 +78,24 @@ open class DashboardFragment : Fragment() {
 
         return root
     }
+
+    fun showSuggestions(query: String) {
+
+        val suggestionsContainer = view?.findViewById<LinearLayout>(R.id.suggestions_container)
+        suggestionsContainer?.removeAllViews()
+
+        val matchedJobs = jobData?.jobs?.filter { job ->
+            (job.company + ' ' + job.position).contains(query, ignoreCase = true)
+        }
+
+        matchedJobs?.forEach { job ->
+            val suggestionTextView = TextView(requireContext()).apply {
+                text = "${job.company} ${job.position}"
+            }
+            suggestionsContainer?.addView(suggestionTextView)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -90,36 +110,6 @@ open class DashboardFragment : Fragment() {
             jobData = DataUtils.parseJobData(it)
         }
     }
-
-    fun connectDatabase() {
-        val jdbcUrl = "jdbc:sqlserver://cs346server.database.windows.net:1433;database=JobInfo;encrypt=true;trustServerCertificate=false;hostNameInCertificate=.database.windows.net;loginTimeout=30;"
-        val username = "ourlogin@cs346server.database.windows.net"
-        val password = "ukgtKHGVCHTCjhgvkv%^65r^66657897"
-
-        var connection: Connection? = null
-
-        try {
-            // Attempt to establish a connection
-            connection = DriverManager.getConnection(jdbcUrl, username, password)
-            Log.d("INFO", "Connected to the SQL Server successfully.")
-
-            // You can add additional logic here to interact with the database
-            // For example, creating a Statement and executing a query
-
-        } catch (e: SQLException) {
-            Log.d("INFO", "Connection to the sql server failed")
-            e.printStackTrace()
-        } finally {
-            // Close the connection
-            try {
-                connection?.close()
-                Log.d("INFO", "Connection to sql server closed")
-            } catch (e: SQLException) {
-                e.printStackTrace()
-            }
-        }
-    }
-
     fun filterAndDisplayJobs(query: String) {
         val filteredJob = jobData?.jobs?.firstOrNull {
             query.contains(it.company, ignoreCase = true) &&
