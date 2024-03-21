@@ -1,24 +1,19 @@
 package ca.uwaterloo.cs346.uwconnect.ui.dashboard
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.uwaterloo.cs346.uwconnect.R
 import ca.uwaterloo.cs346.uwconnect.data.DatabaseRepository
 import ca.uwaterloo.cs346.uwconnect.data.DatabaseRepository.Companion.testDatabaseConnection
+import ca.uwaterloo.cs346.uwconnect.data.repository.DatabaseRepository.JobInfoConnection
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
-
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 open class DashboardFragment : Fragment() {
 
@@ -49,7 +44,8 @@ open class DashboardFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
-                query?.let { filterAndDisplayJobs(it) }
+                //query?.let { filterAndDisplayJobs(it) }
+                jobConnection()
 
                 return false
             }
@@ -85,6 +81,27 @@ open class DashboardFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun jobConnection() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val jic = JobInfoConnection()
+                val c_id_a = jic.find_company_pk("Test-0")
+                val c_id_b = jic.find_company_pk("Test-1")
+                val c_id_c = jic.find_company_pk("Test-2")
+                val c_id_d = jic.find_company_pk("Doesn't exist")
+
+                Log.d("info",c_id_a.toString())
+                Log.d("info",c_id_b.toString())
+                Log.d("info",c_id_c.toString())
+                Log.d("info",c_id_d.toString())
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Handle any errors in connection
+            }
+        }
+
     }
 
     fun filterAndDisplayJobs(query: String) {
