@@ -1,5 +1,7 @@
 package ca.uwaterloo.cs346.uwconnect.ui.notifications
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.uwaterloo.cs346.uwconnect.R
+import ca.uwaterloo.cs346.uwconnect.databinding.EventItemBinding
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {
@@ -31,16 +34,25 @@ class NotificationsFragment : Fragment() {
         val root: View = binding.root
 
         val layout: LinearLayout = binding.eventsLayout
+        // Assuming EventItemBinding is the correct name for your ViewBinding class
         notificationsViewModel.events.observe(viewLifecycleOwner) { events ->
             events.forEach { event ->
-                val eventView = LayoutInflater.from(context).inflate(R.layout.event_item, layout, false)
-                eventView.findViewById<TextView>(R.id.event_date).text = event.date
-                eventView.findViewById<TextView>(R.id.event_time).text = event.time
-                eventView.findViewById<TextView>(R.id.event_name).text = event.name
-                eventView.findViewById<TextView>(R.id.event_location).text = event.location
-                layout.addView(eventView)
+                val eventBinding = EventItemBinding.inflate(inflater, layout, false)
+
+                eventBinding.eventDate.text = event.date
+                eventBinding.eventTime.text = event.time
+                eventBinding.eventName.text = event.name
+                eventBinding.eventLocation.text = event.location
+
+                eventBinding.eventName.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(event.url))
+                    startActivity(intent)
+                }
+
+                layout.addView(eventBinding.root)
             }
         }
+
 
         return root
     }
