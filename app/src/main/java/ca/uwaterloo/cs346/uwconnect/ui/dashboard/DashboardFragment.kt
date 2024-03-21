@@ -62,7 +62,7 @@ open class DashboardFragment : Fragment() {
                     childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let {
                         childFragmentManager.beginTransaction().remove(it).commit()
                     }
-                    // 直接清空LinearLayout容器
+                    view?.findViewById<LinearLayout>(R.id.suggestions_container)?.removeAllViews()
                     view?.findViewById<LinearLayout>(R.id.comment_fragment_container)?.removeAllViews()
                 } else {
                     showSuggestions(newText);
@@ -130,6 +130,8 @@ open class DashboardFragment : Fragment() {
             childFragmentManager.beginTransaction()
                 .replace(R.id.job_fragment_container, jobSection)
                 .commit()
+
+            view?.findViewById<LinearLayout>(R.id.suggestions_container)?.removeAllViews()
         } else {
             childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let {
                 childFragmentManager.beginTransaction().remove(it).commit()
