@@ -82,6 +82,8 @@ open class DashboardFragment : Fragment() {
     fun showSuggestions(query: String) {
 
         val suggestionsContainer = view?.findViewById<LinearLayout>(R.id.suggestions_container)
+        val searchView = view?.findViewById<androidx.appcompat.widget.SearchView>(R.id.searchView)
+
         suggestionsContainer?.removeAllViews()
 
         val matchedJobs = jobData?.jobs?.filter { job ->
@@ -89,8 +91,20 @@ open class DashboardFragment : Fragment() {
         }
 
         matchedJobs?.forEach { job ->
+            val suggestionText = "${job.company} ${job.position}"
             val suggestionTextView = TextView(requireContext()).apply {
-                text = "${job.company} ${job.position}"
+                text = suggestionText
+                textSize = 18f // Set the text size or other styling as needed
+                setPadding(16, 16, 16, 16) // Add padding for better touch targets
+                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                isClickable = true
+                isFocusable = true
+
+                setOnClickListener {
+                    searchView?.setQuery(suggestionText, false)
+                    // Optionally, if you want to perform the search right away:
+                    // searchView?.setQuery(suggestionText, true)
+                }
             }
             suggestionsContainer?.addView(suggestionTextView)
         }
