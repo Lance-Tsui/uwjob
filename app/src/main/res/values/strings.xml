@@ -6,4 +6,14 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="userName">Name</string>
+    <string name="major">Major</string>
+    <string name="degreeType">Degree Type</string>
+    <string-array name="degree_types_array">
+        <item></item>
+        <item>Undergraduate</item>
+        <item>Graduate</item>
+        <item>PhD</item>
+    </string-array>
+    <string name="saveButton">Save</string>
 </resources>
