@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,11 @@ import ca.uwaterloo.cs346.uwconnect.R
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
 
 import ca.uwaterloo.cs346.uwconnect.ui.dashboard.DataUtils
+
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.SQLException
+
 
 open class DashboardFragment : Fragment() {
 
@@ -48,31 +54,19 @@ open class DashboardFragment : Fragment() {
 
                 query?.let { filterAndDisplayJobs(it) }
                 query?.let { filterAndDisplayComments(it) }
-
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    val jobSection =
-                        childFragmentManager.findFragmentById(R.id.job_fragment_container)
-                    if (jobSection != null) {
-                        // If a JobFragment exists, remove it
-                        childFragmentManager.beginTransaction()
-                            .remove(jobSection)
-                            .commit()
+                    childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let {
+                        childFragmentManager.beginTransaction().remove(it).commit()
                     }
-
-                    val commentSection =
-                        childFragmentManager.findFragmentById(R.id.comment_fragment_container)
-                    if (commentSection != null) {
-                        // If a JobFragment exists, remove it
-                        childFragmentManager.beginTransaction()
-                            .remove(commentSection)
-                            .commit()
-                    }
+                    view?.findViewById<LinearLayout>(R.id.suggestions_container)?.removeAllViews()
+                    view?.findViewById<LinearLayout>(R.id.comment_fragment_container)?.removeAllViews()
+                } else {
+                    showSuggestions(newText);
                 }
-
                 return true
             }
         })
@@ -81,9 +75,40 @@ open class DashboardFragment : Fragment() {
             loadJobData(it)
         }
 
-
         return root
     }
+
+    fun showSuggestions(query: String) {
+
+        val suggestionsContainer = view?.findViewById<LinearLayout>(R.id.suggestions_container)
+        val searchView = view?.findViewById<androidx.appcompat.widget.SearchView>(R.id.searchView)
+
+        suggestionsContainer?.removeAllViews()
+
+        val matchedJobs = jobData?.jobs?.filter { job ->
+            (job.company + ' ' + job.position).contains(query, ignoreCase = true)
+        }
+
+        matchedJobs?.forEach { job ->
+            val suggestionText = "${job.company} ${job.position}"
+            val suggestionTextView = TextView(requireContext()).apply {
+                text = suggestionText
+                textSize = 18f // Set the text size or other styling as needed
+                setPadding(16, 16, 16, 16) // Add padding for better touch targets
+                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                isClickable = true
+                isFocusable = true
+
+                setOnClickListener {
+                    searchView?.setQuery(suggestionText, false)
+                    // Optionally, if you want to perform the search right away:
+                    // searchView?.setQuery(suggestionText, true)
+                }
+            }
+            suggestionsContainer?.addView(suggestionTextView)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -98,7 +123,6 @@ open class DashboardFragment : Fragment() {
             jobData = DataUtils.parseJobData(it)
         }
     }
-
     fun filterAndDisplayJobs(query: String) {
         val filteredJob = jobData?.jobs?.firstOrNull {
             query.contains(it.company, ignoreCase = true) &&
@@ -119,15 +143,14 @@ open class DashboardFragment : Fragment() {
             childFragmentManager.beginTransaction()
                 .replace(R.id.job_fragment_container, jobSection)
                 .commit()
+
+            view?.findViewById<LinearLayout>(R.id.suggestions_container)?.removeAllViews()
         } else {
-            // Attempt to find an existing JobFragment by container ID
-            val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
-            if (existingSection != null) {
-                // If a JobFragment exists, remove it
-                childFragmentManager.beginTransaction()
-                    .remove(existingSection)
-                    .commit()
+            childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let {
+                childFragmentManager.beginTransaction().remove(it).commit()
             }
+            // 直接清空LinearLayout容器
+            view?.findViewById<LinearLayout>(R.id.comment_fragment_container)?.removeAllViews()
         }
     }
 
@@ -160,6 +183,33 @@ open class DashboardFragment : Fragment() {
         fragmentManager.commit()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Call methods to clear all views except the search bar.
+        clearSuggestions()
+        clearJobDetails()
+        clearComments()
+    }
+
+    private fun clearSuggestions() {
+        // Assuming there is a method or logic to clear suggestions. If it's just a view, clear it as shown below.
+        _binding?.suggestionsContainer?.removeAllViews()
+    }
+
+    private fun clearJobDetails() {
+        // If job details are displayed in a specific container or view, clear them here.
+        // Example: clearing a job details container
+        _binding?.jobFragmentContainer?.let { container ->
+            childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let { fragment ->
+                childFragmentManager.beginTransaction().remove(fragment).commit()
+            }
+        }
+    }
+
+    private fun clearComments() {
+        // Clear comments container as previously discussed.
+        _binding?.commentFragmentContainer?.removeAllViews()
+    }
 
 }
 
