@@ -75,7 +75,6 @@ open class DashboardFragment : Fragment() {
             loadJobData(it)
         }
 
-
         return root
     }
 
@@ -184,6 +183,33 @@ open class DashboardFragment : Fragment() {
         fragmentManager.commit()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Call methods to clear all views except the search bar.
+        clearSuggestions()
+        clearJobDetails()
+        clearComments()
+    }
+
+    private fun clearSuggestions() {
+        // Assuming there is a method or logic to clear suggestions. If it's just a view, clear it as shown below.
+        _binding?.suggestionsContainer?.removeAllViews()
+    }
+
+    private fun clearJobDetails() {
+        // If job details are displayed in a specific container or view, clear them here.
+        // Example: clearing a job details container
+        _binding?.jobFragmentContainer?.let { container ->
+            childFragmentManager.findFragmentById(R.id.job_fragment_container)?.let { fragment ->
+                childFragmentManager.beginTransaction().remove(fragment).commit()
+            }
+        }
+    }
+
+    private fun clearComments() {
+        // Clear comments container as previously discussed.
+        _binding?.commentFragmentContainer?.removeAllViews()
+    }
 
 }
 
