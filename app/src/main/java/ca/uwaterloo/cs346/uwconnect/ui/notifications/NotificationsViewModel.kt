@@ -17,30 +17,26 @@ class NotificationsViewModel : ViewModel() {
     val text: LiveData<String> = _text
 
     init {
-        // 假设我们只关注“University of Waterloo”的新闻
-        val keywords = listOf("Waterloo")
-        fetchRSS(keywords)
+        fetchAllRSS()
     }
 
-    private fun fetchRSS(keywords: List<String>) {
+    private fun fetchAllRSS() {
         viewModelScope.launch {
             val rssText = withContext(Dispatchers.IO) {
-                // 逐个处理这些URL
+                // Update the URL list with the new RSS link
                 val urls = listOf(
-                    "https://www.cbc.ca/webfeed/rss/rss-topstories",
-                    "https://www.cbc.ca/webfeed/rss/rss-world",
-                    "https://www.cbc.ca/webfeed/rss/rss-canada-kitchenerwaterloo"
-                    // 添加其他URL...
+                    "https://uwaterloo.ca/math/news/news.xml"
+                    // Add other RSS feed URLs here...
                 )
                 urls.map { url ->
-                    fetchRSSItems(url, keywords)
+                    fetchRSSItems(url)
                 }.joinToString("\n")
             }
             _text.postValue(rssText)
         }
     }
 
-    private fun fetchRSSItems(urlString: String, keywords: List<String>): String {
+    private fun fetchRSSItems(urlString: String): String {
         val stringBuilder = StringBuilder()
         try {
             val url = URL(urlString)
@@ -58,20 +54,16 @@ class NotificationsViewModel : ViewModel() {
                     XmlPullParser.START_TAG -> {
                         if (parser.name.equals("title", ignoreCase = true)) {
                             eventType = parser.next()
-                            title = parser.text
+                            title = parser.text ?: ""
                         } else if (parser.name.equals("description", ignoreCase = true)) {
                             eventType = parser.next()
-                            description = parser.text
+                            description = parser.text ?: ""
                         }
                     }
                     XmlPullParser.END_TAG -> {
                         if (parser.name.equals("item", ignoreCase = true)) {
-                            if (keywords.any { keyword ->
-                                    title.contains(keyword, ignoreCase = true) ||
-                                            description.contains(keyword, ignoreCase = true)
-                                }) {
-                                stringBuilder.append(title).append("\n")
-                            }
+                            // Append each item to the result regardless of keywords
+                            stringBuilder.append("$title\n$description\n\n")
                             title = ""
                             description = ""
                         }
@@ -86,4 +78,3 @@ class NotificationsViewModel : ViewModel() {
         }
     }
 }
-

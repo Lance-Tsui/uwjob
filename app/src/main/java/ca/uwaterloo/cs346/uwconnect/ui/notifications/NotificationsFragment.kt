@@ -33,10 +33,10 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val textView = binding.rssTextView
+        notificationsViewModel.text.observe(viewLifecycleOwner, { rssText ->
+            textView.text = rssText
+        })
         return root
     }
 
@@ -45,38 +45,4 @@ class NotificationsFragment : Fragment() {
         _binding = null
     }
 
-    fun fetchAndFilterRSS(urlString: String): String {
-        try {
-            val url = URL(urlString)
-            val inputStream = url.openConnection().getInputStream()
-            val factory = XmlPullParserFactory.newInstance()
-            val parser = factory.newPullParser()
-            parser.setInput(inputStream, null)
-
-            var eventType = parser.eventType
-            var isItem = false
-            var text: String? = null
-            var filteredText = "Filtered RSS Items:\n\n"
-
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                val tagName = parser.name
-                when (eventType) {
-                    XmlPullParser.START_TAG -> if (tagName.equals("item", ignoreCase = true)) {
-                        isItem = true
-                    }
-                    XmlPullParser.TEXT -> text = parser.text
-                    XmlPullParser.END_TAG -> if (tagName.equals("item", ignoreCase = true)) {
-                        isItem = false
-                        if (text?.contains("University of Waterloo") == true) {
-                            filteredText += "$text\n\n"
-                        }
-                    }
-                }
-                eventType = parser.next()
-            }
-            return filteredText
-        } catch (e: Exception) {
-            return "Error fetching RSS: ${e.message}"
-        }
-    }
 }
