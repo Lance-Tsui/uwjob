@@ -1,6 +1,8 @@
 package ca.uwaterloo.cs346.uwconnect.ui.notifications
 
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,8 +36,13 @@ class NotificationsFragment : Fragment() {
         val root: View = binding.root
 
         val textView = binding.rssTextView
-        notificationsViewModel.text.observe(viewLifecycleOwner, { rssText ->
-            textView.text = rssText
+        notificationsViewModel.text.observe(viewLifecycleOwner, { htmlContent ->
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                textView.text = Html.fromHtml(htmlContent, Html.FROM_HTML_MODE_COMPACT)
+            } else {
+                textView.text = Html.fromHtml(htmlContent)
+            }
+            textView.movementMethod = LinkMovementMethod.getInstance() // 允许链接点击
         })
         return root
     }
