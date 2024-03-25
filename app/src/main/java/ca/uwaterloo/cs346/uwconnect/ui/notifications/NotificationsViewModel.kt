@@ -48,13 +48,19 @@ class NotificationsViewModel : ViewModel() {
 
             var eventType = parser.eventType
             var title = ""
+            var link = ""
             var description = ""
+            var htmlLink = ""
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 when (eventType) {
                     XmlPullParser.START_TAG -> {
                         if (parser.name.equals("title", ignoreCase = true)) {
                             eventType = parser.next()
                             title = parser.text ?: ""
+                        } else if (parser.name.equals("link", ignoreCase = true)) {
+                            eventType = parser.next()
+                            link = parser.text ?: ""
+                            htmlLink = "<a href='$link'>$title</a><br/>"
                         } else if (parser.name.equals("description", ignoreCase = true)) {
                             eventType = parser.next()
                             description = parser.text ?: ""
@@ -63,8 +69,10 @@ class NotificationsViewModel : ViewModel() {
                     XmlPullParser.END_TAG -> {
                         if (parser.name.equals("item", ignoreCase = true)) {
                             // Append each item to the result regardless of keywords
-                            stringBuilder.append("$title\n$description\n\n")
+                            stringBuilder.append("$htmlLink<br>$description<br><br>")
                             title = ""
+                            link = ""
+                            htmlLink = ""
                             description = ""
                         }
                     }

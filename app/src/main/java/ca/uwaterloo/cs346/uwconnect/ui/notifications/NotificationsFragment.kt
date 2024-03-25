@@ -1,8 +1,11 @@
 package ca.uwaterloo.cs346.uwconnect.ui.notifications
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.SpannableString
 import android.text.method.LinkMovementMethod
+import android.text.style.URLSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,15 +39,26 @@ class NotificationsFragment : Fragment() {
         val root: View = binding.root
 
         val textView = binding.rssTextView
-        notificationsViewModel.text.observe(viewLifecycleOwner, { htmlContent ->
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                textView.text = Html.fromHtml(htmlContent, Html.FROM_HTML_MODE_COMPACT)
-            } else {
-                textView.text = Html.fromHtml(htmlContent)
-            }
-            textView.movementMethod = LinkMovementMethod.getInstance() // 允许链接点击
-        })
+        notificationsViewModel.text.observe(viewLifecycleOwner) { htmlContent ->
+            setTextViewHTML(textView, htmlContent)
+            textView.movementMethod = LinkMovementMethod.getInstance()
+        }
         return root
+    }
+
+    fun setTextViewHTML(textView: TextView, html: String) {
+        val sequence = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+        val spannable = SpannableString(sequence)
+        val urlSpans = spannable.getSpans(0, spannable.length, URLSpan::class.java)
+        urlSpans.forEach {
+            val start = spannable.getSpanStart(it)
+            val end = spannable.getSpanEnd(it)
+            val flags = spannable.getSpanFlags(it)
+            spannable.removeSpan(it)
+            spannable.setSpan(NoUnderlineSpan(it.url), start, end, flags)
+        }
+        textView.text = spannable
+        textView.movementMethod = LinkMovementMethod.getInstance() // 允许链接点击
     }
 
     override fun onDestroyView() {
