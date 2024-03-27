@@ -10,7 +10,7 @@
     <string name="major">Major</string>
     <string name="degreeType">Degree Type</string>
     <string-array name="degree_types_array">
-        <item></item>
+        <item>Choose one</item>
         <item>Undergraduate</item>
         <item>Graduate</item>
         <item>PhD</item>

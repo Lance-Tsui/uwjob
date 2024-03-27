@@ -31,14 +31,10 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         setupObservers()
         setupListeners()
         setupDegreeTypeSpinner()
+        return binding.root
     }
 
     private fun setupObservers() {
@@ -68,14 +64,14 @@ class HomeFragment : Fragment() {
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.degree_types_array,
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
+            android.R.layout.simple_spinner_item
         ).also { adapter ->
-            adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.degreeTypeSpinner.adapter = adapter
         }
 
         binding.degreeTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedDegreeType = parent.getItemAtPosition(position).toString()
                 viewModel.updateDegreeType(selectedDegreeType)
             }
