@@ -15,5 +15,10 @@
         <item>Graduate</item>
         <item>PhD</item>
     </string-array>
+    <string-array name="rss_source_array">
+        <item>Math News</item>
+        <item>Math Student</item>
+        <item>Eng News</item>
+    </string-array>
     <string name="saveButton">Save</string>
 </resources>

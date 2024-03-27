@@ -9,6 +9,7 @@ import android.text.style.URLSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -43,6 +44,20 @@ class NotificationsFragment : Fragment() {
             setTextViewHTML(textView, htmlContent)
             textView.movementMethod = LinkMovementMethod.getInstance()
         }
+
+        val spinner = binding.rssSourceSpinner
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                when (position) {
+                    0 -> notificationsViewModel.setCurrentRssUrl("https://uwaterloo.ca/math/news/news.xml")
+                    1 -> notificationsViewModel.setCurrentRssUrl("https://mathnews.uwaterloo.ca/?feed=rss")
+                    2 -> notificationsViewModel.setCurrentRssUrl("https://uwaterloo.ca/engineering/news/news.xml")
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
         return root
     }
 
