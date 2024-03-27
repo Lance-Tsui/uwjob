@@ -15,24 +15,26 @@ class NotificationsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>()
     val text: LiveData<String> = _text
-
+    private val _currentRssUrl = MutableLiveData<String>()
+    val currentRssUrl: LiveData<String> = _currentRssUrl
     init {
-        fetchAllRSS()
+        _currentRssUrl.value = "https://uwaterloo.ca/math/news/news.xml"
+        _currentRssUrl.observeForever {
+            fetchAllRSS()
+        }
     }
 
+    fun setCurrentRssUrl(url: String) {
+        _currentRssUrl.value = url
+    }
     private fun fetchAllRSS() {
         viewModelScope.launch {
-            val rssText = withContext(Dispatchers.IO) {
-                // Update the URL list with the new RSS link
-                val urls = listOf(
-                    "https://uwaterloo.ca/math/news/news.xml"
-                    // Add other RSS feed URLs here...
-                )
-                urls.map { url ->
+            _currentRssUrl.value?.let { url ->
+                val rssText = withContext(Dispatchers.IO) {
                     fetchRSSItems(url)
-                }.joinToString("\n")
+                }
+                _text.postValue(rssText)
             }
-            _text.postValue(rssText)
         }
     }
 
