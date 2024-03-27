@@ -19,6 +19,7 @@
         <item>Math News</item>
         <item>Math Student</item>
         <item>Eng News</item>
+        <item>Sci News</item>
     </string-array>
     <string name="saveButton">Save</string>
 </resources>

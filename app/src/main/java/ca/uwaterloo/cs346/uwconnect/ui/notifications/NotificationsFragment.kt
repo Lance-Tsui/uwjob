@@ -52,6 +52,7 @@ class NotificationsFragment : Fragment() {
                     0 -> notificationsViewModel.setCurrentRssUrl("https://uwaterloo.ca/math/news/news.xml")
                     1 -> notificationsViewModel.setCurrentRssUrl("https://mathnews.uwaterloo.ca/?feed=rss")
                     2 -> notificationsViewModel.setCurrentRssUrl("https://uwaterloo.ca/engineering/news/news.xml")
+                    3 -> notificationsViewModel.setCurrentRssUrl("https://uwaterloo.ca/science/news/news.xml")
                 }
             }
 
