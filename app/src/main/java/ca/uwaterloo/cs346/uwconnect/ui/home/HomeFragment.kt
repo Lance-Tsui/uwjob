@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.degreeTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedDegreeType = parent.getItemAtPosition(position).toString()
                 viewModel.updateDegreeType(selectedDegreeType)
             }
