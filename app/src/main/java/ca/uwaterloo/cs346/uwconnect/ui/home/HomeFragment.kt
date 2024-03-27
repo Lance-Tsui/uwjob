@@ -39,6 +39,17 @@ class HomeFragment : Fragment() {
         setupObservers()
         setupListeners()
         setupDegreeTypeSpinner()
+        setupReview()
+    }
+
+    fun setupReview() {
+        if (childFragmentManager.findFragmentById(R.id.postReviewContainer) == null) {
+            val postReviewFragment = PostReviewFragment()
+
+            childFragmentManager.beginTransaction()
+                .add(R.id.postReviewContainer, postReviewFragment)
+                .commit()
+        }
     }
 
     private fun setupObservers() {
