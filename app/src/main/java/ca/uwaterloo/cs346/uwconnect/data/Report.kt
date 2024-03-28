@@ -5,5 +5,5 @@ class Report (
     val studentId: Int,
     val positionId: Int
 ) {
-    
+
 }
