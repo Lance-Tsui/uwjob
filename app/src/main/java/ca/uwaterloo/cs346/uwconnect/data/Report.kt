@@ -4,4 +4,6 @@ class Report (
     val reportId: Int,
     val studentId: Int,
     val positionId: Int
-)
+) {
+    
+}
