@@ -10,5 +10,5 @@ class ReportInfo (
     val comment: String,
     val studentYear: Int,
     val studentSem: Int,
-    val studentWorkterm: Int
+    val studentWorkTerm: Int
 )
