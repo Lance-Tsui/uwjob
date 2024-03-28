@@ -23,15 +23,15 @@ class DataRepository {
     )
 
 
-    fun getStudentIdByReportId(reportId: Int): Int? {
+    fun getStudentByReportId(reportId: Int): Student? {
         val report = reports.find { it.reportId == reportId }
-        val student = students.find { it.studentId == report?.studentId }
-        return student?.studentId
+        return students.find { it.studentId == report?.studentId }
     }
 
-    fun getPositionIdByReportId(reportId: Int): Int? {
+    fun getPositionByReportId(reportId: Int): Position? {
         val report = reports.find { it.reportId == reportId }
-        val position = positions.find { it.positionId == report?.positionId }
-        return position?.positionId
+        return positions.find { it.positionId == report?.positionId }
     }
+
+
 }
