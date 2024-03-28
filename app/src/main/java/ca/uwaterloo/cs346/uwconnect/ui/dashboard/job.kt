@@ -4,8 +4,7 @@ import java.io.Serializable
 
 data class JobData(
     val jobs: List<Job>,
-    val comments: List<Comment>,
-    val users: List<User>
+    val comments: List<Comment>
 )
 
 data class Job(
@@ -24,8 +23,3 @@ data class Comment(
     val upvote: Boolean,
     val comment: String
 ): Serializable
-
-data class User(
-    val id: Int,
-    val username: String
-)
