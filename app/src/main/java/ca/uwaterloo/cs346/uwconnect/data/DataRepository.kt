@@ -22,6 +22,13 @@ class DataRepository {
         // more position
     )
 
+    private val companies = listOf(
+        Company(1, "Google"),
+        Company(2, "Facebook"),
+        Company(3, "Amazon")
+        // more company
+    )
+
 
     fun getStudentByReportId(reportId: Int): Student? {
         val report = reports.find { it.reportId == reportId }
@@ -33,5 +40,8 @@ class DataRepository {
         return positions.find { it.positionId == report?.positionId }
     }
 
-
+    fun getCompanyByPositionId(positionId: Int): Company? {
+        val position = positions.find { it.positionId == positionId }
+        return companies.find { it.companyId == position?.companyId }
+    }
 }
