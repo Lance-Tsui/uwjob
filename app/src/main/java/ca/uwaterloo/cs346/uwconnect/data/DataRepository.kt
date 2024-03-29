@@ -1,21 +1,23 @@
 package ca.uwaterloo.cs346.uwconnect.data
 
+import java.util.Date
+
 class DataRepository {
-    val students = listOf(
+    private val students = listOf(
         Student(1, "Alice"),
         Student(2, "Bob"),
         Student(3, "Charlie")
         // more student
     )
 
-    val reports = listOf(
+    private val reports = listOf(
         Report(1, 1, 101),
         Report(2, 2, 102),
         Report(3, 3, 103)
         // more report
     )
 
-    val positions = listOf(
+    private val positions = listOf(
         Position(101, 1, "Software Engineer"),
         Position(102, 2, "Data Scientist"),
         Position(103, 3, "Product Manager")
@@ -29,6 +31,16 @@ class DataRepository {
         // more company
     )
 
+    private val reportInfos = listOf(
+        ReportInfo(1, 101, 5, Date(), "Excellent work.", 3, 1, 2),
+        ReportInfo(2, 102, 4, Date(), "Good job, but needs more attention to detail.", 2, 2, 1),
+        ReportInfo(3, 103, 3, Date(), "Average performance.", 4, 1, 3)
+        // more reportinfo
+    )
+
+    fun getReportInfoByReportId(reportId: Int): ReportInfo? {
+        return reportInfos.find { it.reportId == reportId }
+    }
 
     fun getStudentByReportId(reportId: Int): Student? {
         val report = reports.find { it.reportId == reportId }
