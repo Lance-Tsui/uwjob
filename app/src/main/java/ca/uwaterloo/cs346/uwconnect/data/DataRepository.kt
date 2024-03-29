@@ -56,4 +56,17 @@ class DataRepository {
         val position = positions.find { it.positionId == positionId }
         return companies.find { it.companyId == position?.companyId }
     }
+
+    fun getCompanyByReportId(reportId: Int): Company? {
+
+        val report = reports.find { it.reportId == reportId }
+
+        val position = report?.let {
+            positions.find { pos -> pos.positionId == it.positionId }
+        }
+
+        return position?.let {
+            companies.find { comp -> comp.companyId == it.companyId }
+        }
+    }
 }
