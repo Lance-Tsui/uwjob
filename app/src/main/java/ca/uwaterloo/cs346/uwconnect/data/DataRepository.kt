@@ -46,6 +46,24 @@ class DataRepository {
         return reportInfos.filter { it.reportId == reportId }
     }
 
+    fun aggregateReportInfoByReportId(reportId: Int): ReportAggregation {
+        // Filter the list for matching reportId
+        val matchingReportInfos = reportInfos.filter { it.reportId == reportId }
+
+        // Calculate the sum of ratings
+        val sumRatings = matchingReportInfos.sumOf { it.rating }
+
+        // Count the matching reports
+        val count = matchingReportInfos.size
+
+        // Collect all comments
+        val comments = matchingReportInfos.map { it.comment }
+
+        // Return the aggregated result
+        return ReportAggregation(sumRatings, count, comments)
+    }
+
+
     fun getStudentByReportId(reportId: Int): Student? {
         val report = reports.find { it.reportId == reportId }
         return students.find { it.studentId == report?.studentId }
