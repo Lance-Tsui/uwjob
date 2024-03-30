@@ -42,6 +42,10 @@ class DataRepository {
         return reportInfos.find { it.reportId == reportId }
     }
 
+    fun getReportInfosByReportId(reportId: Int): List<ReportInfo> {
+        return reportInfos.filter { it.reportId == reportId }
+    }
+
     fun getStudentByReportId(reportId: Int): Student? {
         val report = reports.find { it.reportId == reportId }
         return students.find { it.studentId == report?.studentId }
