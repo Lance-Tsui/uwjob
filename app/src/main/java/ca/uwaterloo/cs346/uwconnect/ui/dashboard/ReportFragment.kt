@@ -20,7 +20,7 @@ class ReportFragment : Fragment() {
             reportId = it.getInt(ARG_REPORT_ID)
         }
     }
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

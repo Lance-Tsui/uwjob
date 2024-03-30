@@ -3,35 +3,35 @@ package ca.uwaterloo.cs346.uwconnect.data
 import java.util.Date
 
 class DataRepository {
-    private val students = listOf(
+    val students = listOf(
         Student(1, "Alice"),
         Student(2, "Bob"),
         Student(3, "Charlie")
         // more student
     )
 
-    private val reports = listOf(
+    val reports = listOf(
         Report(1, 1, 101),
         Report(2, 2, 102),
         Report(3, 3, 103)
         // more report
     )
 
-    private val positions = listOf(
+    val positions = listOf(
         Position(101, 1, "Software Engineer"),
         Position(102, 2, "Data Scientist"),
         Position(103, 3, "Product Manager")
         // more position
     )
 
-    private val companies = listOf(
+    val companies = listOf(
         Company(1, "Google"),
         Company(2, "Facebook"),
         Company(3, "Amazon")
         // more company
     )
 
-    private val reportInfos = listOf(
+    val reportInfos = listOf(
         ReportInfo(1, 101, 5, Date(), "Excellent work.", 3, 1, 2),
         ReportInfo(2, 102, 4, Date(), "Good job, but needs more attention to detail.", 2, 2, 1),
         ReportInfo(3, 103, 3, Date(), "Average performance.", 4, 1, 3)
