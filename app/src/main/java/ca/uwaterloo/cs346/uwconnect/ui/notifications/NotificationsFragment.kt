@@ -47,7 +47,7 @@ class NotificationsFragment : Fragment() {
 
         val spinner = binding.rssSourceSpinner
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 when (position) {
                     0 -> notificationsViewModel.setCurrentRssUrl("https://uwaterloo.ca/math/news/news.xml")
                     1 -> notificationsViewModel.setCurrentRssUrl("https://mathnews.uwaterloo.ca/?feed=rss")
