@@ -50,8 +50,15 @@ class DashboardFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {
-                    showSuggestions(it)
+                if (newText.isNullOrEmpty()) {
+                    childFragmentManager.findFragmentById(R.id.report_info_container)?.let {
+                        childFragmentManager.beginTransaction().remove(it).commit()
+                    }
+                    view?.findViewById<LinearLayout>(R.id.suggestions_container)?.removeAllViews()
+                } else {
+                    newText?.let {
+                        showSuggestions(it)
+                    }
                 }
                 return true
             }
