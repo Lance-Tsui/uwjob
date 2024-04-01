@@ -72,7 +72,7 @@ class DashboardFragment : Fragment() {
     }
 
     fun splitReport(query: String) {
-        query.let {
+        query.trim().let {
             // Split the query string at the first occurrence of ' ', resulting in at most two parts
             val parts = it.split(" ", limit = 2)
             if (parts.size == 2) {
