@@ -42,27 +42,28 @@ class DataRepository {
         return reportInfos.find { it.reportId == reportId }
     }
 
+    fun getCommentsByReportId(reportId: Int): List<String> {
+        return reportInfos.filter { it.reportId == reportId }.map { it.comment }
+    }
+
+    fun getCountByReportId(reportId: Int): Int {
+        return reportInfos.count { it.reportId == reportId }
+    }
+
+    fun getSumRatingByReportId(reportId: Int): Int {
+        return reportInfos.filter { it.reportId == reportId }.sumOf { it.rating }
+    }
+
+    fun getAvgRatingByReportId(reportId: Int): Float {
+        val reportInfosForId = reportInfos.filter { it.reportId == reportId }
+        val totalRatings = reportInfosForId.sumOf { it.rating }
+        val count = reportInfosForId.size
+        return if (count > 0) totalRatings.toFloat() / count else 0f
+    }
+
     fun getReportInfosByReportId(reportId: Int): List<ReportInfo> {
         return reportInfos.filter { it.reportId == reportId }
     }
-
-    fun aggregateReportInfoByReportId(reportId: Int): ReportAggregation {
-        // Filter the list for matching reportId
-        val matchingReportInfos = reportInfos.filter { it.reportId == reportId }
-
-        // Calculate the sum of ratings
-        val sumRatings = matchingReportInfos.sumOf { it.rating }
-
-        // Count the matching reports
-        val count = matchingReportInfos.size
-
-        // Collect all comments
-        val comments = matchingReportInfos.map { it.comment }
-
-        // Return the aggregated result
-        return ReportAggregation(sumRatings, count, comments)
-    }
-
 
     fun getStudentByReportId(reportId: Int): Student? {
         val report = reports.find { it.reportId == reportId }
