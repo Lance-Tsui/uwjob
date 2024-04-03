@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import ca.uwaterloo.cs346.uwconnect.data.*
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentReportBinding
 
@@ -51,16 +52,9 @@ class ReportFragment : Fragment() {
     }
 
     fun displayComments(comments: List<String>) {
-        val container = binding.commentsContainer
-        container.removeAllViews() // 移除所有已有的评论视图，便于重新加载
-        comments.forEach { commentText ->
-            val textView = TextView(context).apply {
-                text = commentText
-                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                // 设置其他视觉属性，比如边距、文字大小等
-            }
-            container.addView(textView)
-        }
+        val adapter = CommentsAdapter(comments)
+        binding.commentsRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.commentsRecyclerView.adapter = adapter
     }
 
     companion object {
