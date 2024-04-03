@@ -34,7 +34,8 @@ class DataRepository {
     val reportInfos = listOf(
         ReportInfo(1, 101, 5, Date(), "Excellent work.", 3, 1, 2),
         ReportInfo(2, 102, 4, Date(), "Good job, but needs more attention to detail.", 2, 2, 1),
-        ReportInfo(3, 103, 3, Date(), "Average performance.", 4, 1, 3)
+        ReportInfo(3, 103, 3, Date(), "Average performance.", 4, 1, 3),
+        ReportInfo(1, 101, 4, Date(), "Nice work.", 3, 1, 2)
         // more reportinfo
     )
 
