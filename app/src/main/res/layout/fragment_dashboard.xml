@@ -13,6 +13,7 @@
         android:background="#D3D3D3"
         android:iconifiedByDefault="true" />
 
+
     <LinearLayout
         android:id="@+id/suggestions_container"
         android:layout_width="match_parent"
@@ -20,20 +21,12 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <!-- 这里将动态添加 TextView -->
-
     </LinearLayout>
 
 
     <FrameLayout
-        android:id="@+id/job_fragment_container"
+        android:id="@+id/report_info_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:id="@+id/comment_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
 
 </LinearLayout>
