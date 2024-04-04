@@ -6,14 +6,16 @@ class DataRepository {
     val studentPersonalInfos = listOf(
         StudentPersonalInfo(1, "Alice", "F"),
         StudentPersonalInfo(2, "Bob", "M"),
-        StudentPersonalInfo(3, "Charlie", "M")
+        StudentPersonalInfo(3, "Charlie", "M"),
+        StudentPersonalInfo(4, "Bella", "F")
         // more student
     )
 
     val reports = listOf(
         Report(1, 1, 101),
         Report(2, 2, 102),
-        Report(3, 3, 103)
+        Report(3, 3, 103),
+        Report(4, 4, 102),
         // more report
     )
 
@@ -93,12 +95,12 @@ class DataRepository {
         }
     }
 
-    fun numberOfMalesByCompanyIdAndPositionId(companyId: Int, positionId: Int): Int {
+    fun numberOfMalesByPositionId(positionId: Int): Int {
         // Filter reports by positionId
         val reportsMatchingPosition = reports.filter { it.positionId == positionId }
 
         // Find matching positions with companyId
-        val positionMatches = positions.any { it.positionId == positionId && it.companyId == companyId }
+        val positionMatches = positions.any { it.positionId == positionId}
 
         // If there's no matching position for the companyId, return 0
         if (!positionMatches) return 0
@@ -111,9 +113,9 @@ class DataRepository {
         }
     }
 
-    fun numberOfFemalesByCompanyIdAndPositionId(companyId: Int, positionId: Int): Int {
+    fun numberOfFemalesByPositionId(positionId: Int): Int {
         val reportsMatchingPosition = reports.filter { it.positionId == positionId }
-        val positionMatches = positions.any { it.positionId == positionId && it.companyId == companyId }
+        val positionMatches = positions.any { it.positionId == positionId}
 
         if (!positionMatches) return 0
 
@@ -124,9 +126,23 @@ class DataRepository {
         }
     }
 
-    fun totalNumberOfStudentsByCompanyIdAndPositionId(companyId: Int, positionId: Int): Int {
+    fun numberOfValidByPositionId(positionId: Int): Int {
         val reportsMatchingPosition = reports.filter { it.positionId == positionId }
-        val positionMatches = positions.any { it.positionId == positionId && it.companyId == companyId }
+        val positionMatches = positions.any { it.positionId == positionId}
+
+        if (!positionMatches) return 0
+
+        return reportsMatchingPosition.count { report ->
+            studentPersonalInfos.any {
+                it.studentId == report.studentId && (it.studentGender == "M" || it.studentGender == "F")
+            }
+        }
+    }
+
+
+    fun totalNumberOfStudentsByPositionId(positionId: Int): Int {
+        val reportsMatchingPosition = reports.filter { it.positionId == positionId }
+        val positionMatches = positions.any { it.positionId == positionId}
 
         if (!positionMatches) return 0
 

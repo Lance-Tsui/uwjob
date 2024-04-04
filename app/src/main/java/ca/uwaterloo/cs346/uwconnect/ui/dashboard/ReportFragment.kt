@@ -43,10 +43,17 @@ class ReportFragment : Fragment() {
     private fun displayReportDetail(reportId: Int) {
         val company = dataRepository.getCompanyByReportId(reportId)
         val position = dataRepository.getPositionByReportId(reportId)
+        val maleCount = position?.positionId?.let { dataRepository.numberOfMalesByPositionId(it) }
+        val validCount = position?.positionId?.let { dataRepository.numberOfValidByPositionId(it) }
         val rating = dataRepository.getAvgRatingByReportId(reportId)
         val comments = dataRepository.getCommentsByReportId(reportId)
         binding.companyName.text = company?.companyName ?: "Company not found"
         binding.positionName.text = position?.positionName ?: "Position not found"
+        var progress = 0
+        if (maleCount != null && validCount != null) {
+            progress = if (validCount > 0) maleCount * 100 / validCount else 0
+        }
+        binding.genderCircle.progress = progress
         binding.reportRating.rating = rating
         displayComments(comments)
     }

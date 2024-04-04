@@ -24,25 +24,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/genderCircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorSize="80dp"
+        app:trackThickness="4dp"
+        app:indicatorColor="#00ccff"
+        app:trackColor="#ffc0cb"
+        app:layout_constraintTop_toTopOf="@id/companyName"
+        app:layout_constraintBottom_toBottomOf="@id/reportRating"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <RatingBar
         android:id="@+id/reportRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
         android:stepSize="0.1"
-        android:layout_gravity="center"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
         android:isIndicator="true"
         app:layout_constraintTop_toBottomOf="@id/positionName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/reportRating"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
