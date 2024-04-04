@@ -104,7 +104,7 @@ class DashboardFragment : Fragment() {
             val suggestionText = "${it.first.companyName} ${it.second.positionName}"
             val suggestionTextView = TextView(requireContext()).apply {
                 text = suggestionText
-                textSize = 18f // Set the text size or other styling as needed
+                textSize = 16f // Set the text size or other styling as needed
                 setPadding(16, 16, 16, 16) // Add padding for better touch targets
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
