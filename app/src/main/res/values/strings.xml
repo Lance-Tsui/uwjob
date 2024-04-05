@@ -22,4 +22,5 @@
         <item>Sci News</item>
     </string-array>
     <string name="saveButton">Save</string>
+    <string name="title_activity_home_fragment_c">HomeFragmentC</string>
 </resources>
