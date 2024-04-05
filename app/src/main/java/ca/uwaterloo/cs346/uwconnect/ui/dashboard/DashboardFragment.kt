@@ -1,22 +1,21 @@
 package ca.uwaterloo.cs346.uwconnect.ui.dashboard
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.uwaterloo.cs346.uwconnect.R
-import ca.uwaterloo.cs346.uwconnect.data.Company
-import ca.uwaterloo.cs346.uwconnect.data.DataRepository
-import ca.uwaterloo.cs346.uwconnect.data.Position
-import ca.uwaterloo.cs346.uwconnect.data.Report
 import ca.uwaterloo.cs346.uwconnect.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+import ca.uwaterloo.cs346.uwconnect.ui.dashboard.DataUtils
+
+open class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -24,7 +23,7 @@ class DashboardFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    val dataRepository = DataRepository()
+    var jobData: JobData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +34,9 @@ class DashboardFragment : Fragment() {
             ViewModelProvider(this).get(DashboardViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+
         val root: View = binding.root
+
         val searchView: SearchView = binding.searchView
         searchView.setOnClickListener {
             searchView.requestFocusFromTouch()
@@ -45,117 +46,120 @@ class DashboardFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
-                query?.let{splitReport(it)}
+                query?.let { filterAndDisplayJobs(it) }
+                query?.let { filterAndDisplayComments(it) }
+
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    childFragmentManager.findFragmentById(R.id.report_info_container)?.let {
-                        childFragmentManager.beginTransaction().remove(it).commit()
+                    val jobSection =
+                        childFragmentManager.findFragmentById(R.id.job_fragment_container)
+                    if (jobSection != null) {
+                        // If a JobFragment exists, remove it
+                        childFragmentManager.beginTransaction()
+                            .remove(jobSection)
+                            .commit()
                     }
-                    view?.findViewById<LinearLayout>(R.id.suggestions_container)?.removeAllViews()
-                } else {
-                    newText?.let {
-                        showSuggestions(it)
+
+                    val commentSection =
+                        childFragmentManager.findFragmentById(R.id.comment_fragment_container)
+                    if (commentSection != null) {
+                        // If a JobFragment exists, remove it
+                        childFragmentManager.beginTransaction()
+                            .remove(commentSection)
+                            .commit()
                     }
                 }
+
                 return true
             }
-
         })
 
+        context?.let {
+            loadJobData(it)
+        }
+
+
         return root
-    }
-
-    fun filterJobs(query: String): List<Pair<Company, Position>> {
-        // Assuming query is formatted as "CompanyName PositionName"
-        val parts = query.split(" ", limit = 2)
-        val companyName = parts.getOrNull(0) ?: ""
-        val positionName = parts.getOrNull(1) ?: ""
-
-        // Filter companies and positions based on the query
-        val matchedCompanies = dataRepository.companies.filter { it.companyName.contains(companyName, ignoreCase = true) }
-        val matchedPositions = dataRepository.positions.filter { it.positionName.contains(positionName, ignoreCase = true) }
-
-        // Find matching company and position pairs
-        val matchedJobs = matchedCompanies.flatMap { company ->
-            matchedPositions.filter { position ->
-                position.companyId == company.companyId
-            }.map { position ->
-                Pair(company, position)
-            }
-        }
-
-        return matchedJobs
-    }
-
-    fun showSuggestions(query: String) {
-        val suggestionsContainer = view?.findViewById<LinearLayout>(R.id.suggestions_container)
-        val searchView = view?.findViewById<androidx.appcompat.widget.SearchView>(R.id.searchView)
-
-        // Clear any existing suggestions
-        suggestionsContainer?.removeAllViews()
-
-        // Filter job data based on the query, ignoring case sensitivity
-        val matchedJobs = filterJobs(query)
-        // For each matched job, create a TextView to display as a suggestion
-        matchedJobs?.forEach { it ->
-            val suggestionText = "${it.first.companyName} ${it.second.positionName}"
-            val suggestionTextView = TextView(requireContext()).apply {
-                text = suggestionText
-                textSize = 16f // Set the text size or other styling as needed
-                setPadding(16, 16, 16, 16) // Add padding for better touch targets
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                isClickable = true
-                isFocusable = true
-
-                // Set the query text to the selected suggestion and keep the suggestions list open
-                setOnClickListener {
-                    searchView?.setQuery(suggestionText, false)
-                    // Optionally, if you want to perform the search right away, use the line below instead
-                    // searchView?.setQuery(suggestionText, true)
-                }
-            }
-            suggestionsContainer?.addView(suggestionTextView)
-        }
-    }
-
-    fun displayReport(companyName: String, positionName: String) {
-        val matchingReport = dataRepository.reports.firstOrNull { report ->
-            val company = dataRepository.getCompanyByReportId(report.reportId)
-            val position = dataRepository.getPositionByReportId(report.reportId)
-            company?.companyName == companyName && position?.positionName == positionName
-        }
-
-        matchingReport?.let {
-            val reportFragment = ReportFragment.newInstance(it.reportId)
-            childFragmentManager.beginTransaction()
-                .replace(R.id.report_info_container, reportFragment)
-                .addToBackStack(null)
-                .commit()
-        }
-    }
-
-    fun splitReport(query: String) {
-        query.trim().let {
-            // Split the query string at the first occurrence of ' ', resulting in at most two parts
-            val parts = it.split(" ", limit = 2)
-            if (parts.size == 2) {
-                val companyName = parts[0]
-                val positionName = parts[1]
-                // Now, companyName contains the part before the first space
-                // and positionName contains the rest of the string
-                displayReport(companyName, positionName)
-            }
-        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    fun loadJobData(context: Context) {
+        // Load the JSON string from assets
+        val jsonString = DataUtils.loadJSONFromAsset(context)
+        // Parse the JSON string into your data model
+        jsonString?.let {
+            jobData = DataUtils.parseJobData(it)
+        }
+    }
+
+    fun filterAndDisplayJobs(query: String) {
+        val filteredJob = jobData?.jobs?.firstOrNull {
+            query.contains(it.company, ignoreCase = true) &&
+                    query.contains(it.position, ignoreCase = true)
+        }
+
+        if (filteredJob != null) {
+            val jobSection = JobFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(
+                        "job",
+                        filteredJob
+                    )
+                }
+            }
+
+            // Replace the JobFragment in the job_fragment_container
+            childFragmentManager.beginTransaction()
+                .replace(R.id.job_fragment_container, jobSection)
+                .commit()
+        } else {
+            // Attempt to find an existing JobFragment by container ID
+            val existingSection = childFragmentManager.findFragmentById(R.id.job_fragment_container)
+            if (existingSection != null) {
+                // If a JobFragment exists, remove it
+                childFragmentManager.beginTransaction()
+                    .remove(existingSection)
+                    .commit()
+            }
+        }
+    }
+
+
+    fun filterAndDisplayComments(query: String) {
+        val container = view?.findViewById<LinearLayout>(R.id.comment_fragment_container)
+        container?.removeAllViews() // Clear previous comments if any
+
+        val fragmentManager = childFragmentManager.beginTransaction()
+
+        val filteredJob = jobData?.jobs?.firstOrNull {
+            query.contains(it.company, ignoreCase = true) &&
+                    query.contains(it.position, ignoreCase = true)
+        }
+
+        val jobComments = filteredJob?.commentList?.mapNotNull { commentId ->
+            jobData?.comments?.find { it.id == commentId }
+        } ?: return
+
+        jobComments.forEachIndexed { index, comment ->
+            val commentFragment = CommentFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("comment", comment)
+                }
+            }
+            // This uses a unique tag for each fragment based on its index
+            fragmentManager.add(R.id.comment_fragment_container, commentFragment, "comment_$index")
+        }
+
+        fragmentManager.commit()
+    }
+
+
 }
+
