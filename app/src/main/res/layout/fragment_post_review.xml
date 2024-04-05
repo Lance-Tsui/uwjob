@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/postReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post Review"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/editCompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input Company"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editPosition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input Position"
+        android:inputType="text" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.1"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/editComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input Comment"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/buttonSubmitReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Review"
+        android:layout_gravity="center"
+        android:onClick="submitReview" />
+
+</LinearLayout>

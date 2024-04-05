@@ -31,10 +31,25 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupObservers()
         setupListeners()
         setupDegreeTypeSpinner()
-        return binding.root
+        setupReview()
+    }
+
+    fun setupReview() {
+        if (childFragmentManager.findFragmentById(R.id.postReviewContainer) == null) {
+            val postReviewFragment = PostReviewFragment()
+
+            childFragmentManager.beginTransaction()
+                .add(R.id.postReviewContainer, postReviewFragment)
+                .commit()
+        }
     }
 
     private fun setupObservers() {
@@ -64,9 +79,9 @@ class HomeFragment : Fragment() {
         ArrayAdapter.createFromResource(
             requireContext(),
             R.array.degree_types_array,
-            android.R.layout.simple_spinner_item
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
             binding.degreeTypeSpinner.adapter = adapter
         }
 

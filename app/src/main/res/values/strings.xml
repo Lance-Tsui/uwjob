@@ -2,7 +2,7 @@
     <string name="app_name">UWConnect</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Math News</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -15,5 +15,12 @@
         <item>Graduate</item>
         <item>PhD</item>
     </string-array>
+    <string-array name="rss_source_array">
+        <item>Math News</item>
+        <item>Math Student</item>
+        <item>Eng News</item>
+        <item>Sci News</item>
+    </string-array>
     <string name="saveButton">Save</string>
+    <string name="title_activity_home_fragment_c">HomeFragmentC</string>
 </resources>

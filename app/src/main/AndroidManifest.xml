@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+          xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.UWConnect"
-        tools:targetApi="31">
+            android:allowBackup="true"
+            android:dataExtractionRules="@xml/data_extraction_rules"
+            android:fullBackupContent="@xml/backup_rules"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.UWConnect"
+            tools:targetApi="31">
         <activity
-            android:name=".ui.auth.LoginPage"
-            android:exported="true"
-            android:label="@string/app_name">
+                android:name=".ui.home.HomeFragmentC"
+                android:exported="false"
+                android:label="@string/title_activity_home_fragment_c"
+                android:theme="@style/Theme.UWConnect"/>
+        <activity
+                android:name=".ui.auth.LoginPage"
+                android:exported="true"
+                android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/app_name">
+                android:name=".MainActivity"
+                android:exported="false"
+                android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
+
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDspc4zK_Vd9uhXVoquuG66lRZRpxKo5oA"/>
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyDspc4zK_Vd9uhXVoquuG66lRZRpxKo5oA"/>
     </application>
 
 </manifest>
