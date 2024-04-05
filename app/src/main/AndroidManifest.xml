@@ -17,6 +17,11 @@
             android:theme="@style/Theme.UWConnect"
             tools:targetApi="31">
         <activity
+                android:name=".ui.home.HomeFragmentCompose"
+                android:exported="false"
+                android:label="@string/title_activity_home_fragment_compose"
+                android:theme="@style/Theme.UWConnect"/>
+        <activity
                 android:name=".ui.home.HomeFragmentC"
                 android:exported="false"
                 android:label="@string/title_activity_home_fragment_c"
