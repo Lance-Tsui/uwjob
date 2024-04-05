@@ -10,7 +10,7 @@
     <string name="major">Major</string>
     <string name="degreeType">Degree Type</string>
     <string-array name="degree_types_array">
-        <item></item>
+        <item>Choose one</item>
         <item>Undergraduate</item>
         <item>Graduate</item>
         <item>PhD</item>
@@ -23,4 +23,5 @@
     </string-array>
     <string name="saveButton">Save</string>
     <string name="title_activity_home_fragment_c">HomeFragmentC</string>
+    <string name="title_activity_home_fragment_compose">HomeFragmentCompose</string>
 </resources>

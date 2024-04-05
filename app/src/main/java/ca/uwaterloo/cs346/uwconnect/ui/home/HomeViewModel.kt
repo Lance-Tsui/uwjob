@@ -1,6 +1,5 @@
 package ca.uwaterloo.cs346.uwconnect.ui.home
 
-import android.bluetooth.BluetoothClass.Device.Major
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
