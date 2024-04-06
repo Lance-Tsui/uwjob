@@ -19,7 +19,12 @@
         <activity
             android:name=".ui.home.HomeCompose"
             android:exported="false"
-            android:label="@string/title_activity_home_fragment_compose"
+            android:label="@string/title_activity_home_compose"
+            android:theme="@style/Theme.UWConnect" />
+        <activity
+            android:name=".ui.news.NewsCompose"
+            android:exported="false"
+            android:label="@string/title_activity_news_compose"
             android:theme="@style/Theme.UWConnect" />
         <activity
             android:name=".ui.auth.LoginPage"

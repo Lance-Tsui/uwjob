@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="ca.uwaterloo.cs346.uwconnect.ui.notifications.NotificationsFragment"
+        android:name="ca.uwaterloo.cs346.uwconnect.ui.news.NewsCompose"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_news" />
 </navigation>
