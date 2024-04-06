@@ -2,7 +2,7 @@
     <string name="app_name">UWConnect</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Math News</string>
+    <string name="title_notifications">News</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -22,6 +22,6 @@
         <item>Sci News</item>
     </string-array>
     <string name="saveButton">Save</string>
-    <string name="title_activity_home_fragment_c">HomeFragmentC</string>
-    <string name="title_activity_home_fragment_compose">HomeFragmentCompose</string>
+    <string name="title_activity_home_compose">HomeCompose</string>
+    <string name="title_activity_news_compose">NewsCompose</string>
 </resources>
