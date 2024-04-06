@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ca.uwaterloo.cs346.uwconnect.ui.home.HomeFragmentCompose"
+        android:name="ca.uwaterloo.cs346.uwconnect.ui.home.HomeCompose"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
