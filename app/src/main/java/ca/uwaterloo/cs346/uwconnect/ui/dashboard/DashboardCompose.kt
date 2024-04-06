@@ -128,38 +128,6 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
 
 }
 
-
-fun splitReport(query: String, dataRepository: DataRepository, viewModel: DashboardViewModel) {
-    query.trim().let {
-        val parts = it.split(" ", limit = 2)
-        if (parts.size == 2) {
-            val companyName = parts[0]
-            val positionName = parts[1]
-            val matchingReport = dataRepository.reports.firstOrNull { report ->
-                val company = dataRepository.getCompanyByReportId(report.reportId)
-                val position = dataRepository.getPositionByReportId(report.reportId)
-                company?.companyName == companyName && position?.positionName == positionName
-            }
-            matchingReport?.let {
-                viewModel.selectReport(it.reportId)
-            }
-        }
-    }
-}
-
-
-fun displayReport(companyName: String, positionName: String, dataRepository: DataRepository, selectedReportId: MutableState<Int?>) {
-    val matchingReport = dataRepository.reports.firstOrNull { report ->
-        val company = dataRepository.getCompanyByReportId(report.reportId)
-        val position = dataRepository.getPositionByReportId(report.reportId)
-        company?.companyName == companyName && position?.positionName == positionName
-    }
-
-    matchingReport?.let {
-        selectedReportId.value = it.reportId
-    }
-}
-
 @Composable
 fun SuggestionsList(
     suggestions: List<Pair<Company, Position>>,
