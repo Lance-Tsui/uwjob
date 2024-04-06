@@ -8,6 +8,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -17,6 +19,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
@@ -50,54 +54,80 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
     val searchTextState = remember { mutableStateOf(TextFieldValue()) }
     val selectedReportId by viewModel.selectedReportId.observeAsState()
 
+    val onSearchTriggered: (String) -> Unit = { query ->
+        viewModel.onQuerySubmitted(query)
+    }
     if (selectedReportId == null) {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column() {
             TextField(
-                value = searchTextState.value,
-                onValueChange = { searchTextState.value = it },
-                label = { Text("Search") },
+                value = searchTextState.value.text,
+                onValueChange = { newText ->
+                    searchTextState.value = searchTextState.value.copy(text = newText)
+                },
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(onSearch = {
+                    onSearchTriggered(searchTextState.value.text)
+                }),
                 maxLines = 1,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
             )
-            if (searchTextState.value.text.isNotEmpty()) {
-                Box(modifier = Modifier.weight(1f).heightIn(max = 50.dp)) {
-                    val suggestions = filterJobs(searchTextState.value.text, dataRepository)
-                    SuggestionsList(
-                        suggestions = suggestions,
-                        onSuggestionSelected = { suggestion ->
-                            // 正确地使用ViewModel更新状态
-                            splitReport(suggestion, dataRepository, viewModel)
-                        }
-                    )
-                }
+            Box(modifier = Modifier.heightIn(max = 75.dp)) {
+                val suggestions = filterJobs(searchTextState.value.text, dataRepository)
+                SuggestionsList(
+                    suggestions = suggestions,
+                    onSuggestionSelected = { suggestion ->
+                        viewModel.onSuggestionSelected(suggestion)
+                        searchTextState.value = TextFieldValue(suggestion)
+                        // Set the cursor position to the end of the text
+                        searchTextState.value = searchTextState.value.copy(
+                            text = suggestion,
+                            selection = TextRange(suggestion.length)
+                        )
+                    }
+                )
             }
         }
-    } else {
-        Column(modifier = Modifier.fillMaxSize()) {
+    }
+    else {
+        Column() {
             TextField(
-                value = searchTextState.value,
-                onValueChange = { searchTextState.value = it },
-                label = { Text("Search") },
+                value = searchTextState.value.text,
+                onValueChange = { newText ->
+                    searchTextState.value = searchTextState.value.copy(text = newText)
+                },
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(onSearch = {
+                    onSearchTriggered(searchTextState.value.text)
+                }),
                 maxLines = 1,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
             )
-            if (searchTextState.value.text.isNotEmpty()) {
-                Box(modifier = Modifier.heightIn(max = 100.dp)) {
-                    val suggestions = filterJobs(searchTextState.value.text, dataRepository)
-                    SuggestionsList(
-                        suggestions = suggestions,
-                        onSuggestionSelected = { suggestion ->
-                            // 正确地使用ViewModel更新状态
-                            splitReport(suggestion, dataRepository, viewModel)
-                        }
-                    )
-                }
+            Box(modifier = Modifier.heightIn(max = 75.dp)) {
+                val suggestions = filterJobs(searchTextState.value.text, dataRepository)
+                SuggestionsList(
+                    suggestions = suggestions,
+                    onSuggestionSelected = { suggestion ->
+                        viewModel.onSuggestionSelected(suggestion)
+                        searchTextState.value = TextFieldValue(suggestion)
+                        // Set the cursor position to the end of the text
+                        searchTextState.value = searchTextState.value.copy(
+                            text = suggestion,
+                            selection = TextRange(suggestion.length)
+                        )
+                    }
+                )
             }
+
             ReportScreen(reportId = selectedReportId!!, dataRepository = dataRepository)
         }
     }
 
 }
+
 
 fun splitReport(query: String, dataRepository: DataRepository, viewModel: DashboardViewModel) {
     query.trim().let {
