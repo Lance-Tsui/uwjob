@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="ca.uwaterloo.cs346.uwconnect.ui.dashboard.DashboardFragment"
+        android:name="ca.uwaterloo.cs346.uwconnect.ui.dashboard.DashboardCompose"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/compose_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
