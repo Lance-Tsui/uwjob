@@ -88,6 +88,8 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
             )
             Box(modifier = Modifier.heightIn(max = 75.dp)) {
                 val suggestions = filterJobs(searchTextState.value.text, dataRepository)
+                println("hello world")
+                println(suggestions)
                 SuggestionsList(
                     suggestions = suggestions,
                     onSuggestionSelected = { suggestion ->
@@ -149,23 +151,24 @@ fun SuggestionsList(
     Column {
         for (job in suggestions) {
             Text(
-                text = "${job.first.companyName} ${job.second.positionName}",
+                text = "${job.first.companyName}_${job.second.positionName}",
                 modifier = Modifier
                     .padding(8.dp)
-                    .clickable { onSuggestionSelected("${job.first.companyName} ${job.second.positionName}") }
+                    .clickable { onSuggestionSelected("${job.first.companyName}_${job.second.positionName}") }
             )
         }
     }
 }
 
 fun filterJobs(query: String, dataRepository: DataRepository): List<Pair<Company, Position>> {
-    val parts = query.split(" ", limit = 2)
+    val parts = query.split("_", limit = 2)
     val companyName = parts.getOrNull(0) ?: ""
     val positionName = parts.getOrNull(1) ?: ""
 
     val matchedCompanies = dataRepository.companies.filter { it.companyName.contains(companyName, ignoreCase = true) }
     val matchedPositions = dataRepository.positions.filter { it.positionName.contains(positionName, ignoreCase = true) }
-
+    println(dataRepository.companies)
+    println(dataRepository.positions)
     val matchedJobs = matchedCompanies.flatMap { company ->
         matchedPositions.filter { position ->
             position.companyId == company.companyId

@@ -1,19 +1,22 @@
 package ca.uwaterloo.cs346.uwconnect.data
 
-import java.util.Date
 
 class DataRepository {
-    val dataFetch = DataFetch()
 
-    val studentPersonalInfos = dataFetch.fetchStudentPersonalInfo()
+    val studentpersonalinfofetch = StudentPersonalInfoFetch()
+    val studentPersonalInfos = studentpersonalinfofetch.fetchStudentPersonalInfo()
 
-    val reports = dataFetch.fetchReport()
+    val reportfetch = ReportFetch()
+    val reports = reportfetch.fetchReport()
 
-    val positions = dataFetch.fetchPosition()
+    val positionfetch = PositionFetch()
+    val positions = positionfetch.fetchPosition()
 
-    val companies = dataFetch.fetchCompany()
+    val companyfetch = CompanyFetch()
+    val companies = companyfetch.fetchCompany()
 
-    val reportInfos = dataFetch.fetchReportInfo()
+    val reportinfofetch = ReportInfoFetch()
+    val reportInfos = reportinfofetch.fetchReportInfo()
 
     fun getReportInfoByReportId(reportId: Int): ReportInfo? {
         return reportInfos.find { it.reportId == reportId }
@@ -32,9 +35,10 @@ class DataRepository {
     }
 
     fun getAvgRatingByReportId(reportId: Int): Float {
-        val reportInfosForId = reportInfos.filter { it.reportId == reportId }
-        val totalRatings = reportInfosForId.sumOf { it.rating }
-        val count = reportInfosForId.size
+        val positionId = getPositionByReportId(reportId)?.positionId
+        val reportInfosForPosition = reportInfos.filter { it.positionId == positionId }
+        val totalRatings = reportInfosForPosition.sumOf { it.rating }
+        val count = reportInfosForPosition.size
         return if (count > 0) totalRatings.toFloat() / count else 0f
     }
 
