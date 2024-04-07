@@ -3,6 +3,7 @@ package ca.uwaterloo.cs346.uwconnect.ui.dashboard
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ca.uwaterloo.cs346.uwconnect.common.DELIMITER
 import ca.uwaterloo.cs346.uwconnect.data.DataRepository
 
 class DashboardViewModel : ViewModel() {
@@ -23,7 +24,7 @@ class DashboardViewModel : ViewModel() {
     }
 
     fun onQuerySubmitted(query: String) {
-        val parts = query.trim().split("_", limit = 2)
+        val parts = query.trim().split(DELIMITER, limit = 2)
         if (parts.size == 2) {
             val companyName = parts[0]
             val positionName = parts[1]

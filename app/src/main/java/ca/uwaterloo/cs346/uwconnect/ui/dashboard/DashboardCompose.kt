@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import ca.uwaterloo.cs346.uwconnect.R
+import ca.uwaterloo.cs346.uwconnect.common.DELIMITER
 import ca.uwaterloo.cs346.uwconnect.data.Company
 import ca.uwaterloo.cs346.uwconnect.data.DataRepository
 import ca.uwaterloo.cs346.uwconnect.data.Position
@@ -99,8 +100,6 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
             )
             Box(modifier = Modifier.heightIn(max = 75.dp)) {
                 val suggestions = filterJobs(searchTextState.value.text, dataRepository)
-                println("hello world")
-                println(suggestions)
                 SuggestionsList(
                     suggestions = suggestions,
                     onSuggestionSelected = { suggestion ->
@@ -172,17 +171,17 @@ fun SuggestionsList(
     Column {
         for (job in suggestions) {
             Text(
-                text = "${job.first.companyName}_${job.second.positionName}",
+                text = "${job.first.companyName}${DELIMITER}${job.second.positionName}",
                 modifier = Modifier
                     .padding(8.dp)
-                    .clickable { onSuggestionSelected("${job.first.companyName}_${job.second.positionName}") }
+                    .clickable { onSuggestionSelected("${job.first.companyName}${DELIMITER}${job.second.positionName}") }
             )
         }
     }
 }
 
 fun filterJobs(query: String, dataRepository: DataRepository): List<Pair<Company, Position>> {
-    val parts = query.split("_", limit = 2)
+    val parts = query.split(DELIMITER, limit = 2)
     val companyName = parts.getOrNull(0) ?: ""
     val positionName = parts.getOrNull(1) ?: ""
 
