@@ -34,7 +34,7 @@ class ReportInfoFetch {
             .filter { it.isNotEmpty() } // 过滤掉空行
             .map { line ->
                 val parts = line.split(",") // 分割每行为r_id, s_id, p_id
-                ReportInfo(parts[0].toInt(), parts[1].toInt(), parts[2].toFloat().toInt(), Date(),
+                ReportInfo(parts[0].toInt(), parts[1].toInt(), parts[2].toFloat(), Date(),
                 parts[4], 0, 0, 0) // 创建Report对象
             }
     }
