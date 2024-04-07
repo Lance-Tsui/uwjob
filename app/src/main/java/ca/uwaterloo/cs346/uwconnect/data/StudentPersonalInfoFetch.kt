@@ -31,7 +31,7 @@ class StudentPersonalInfoFetch {
             .filter { it.isNotEmpty() }
             .map { line ->
                 val parts = line.split(",")
-                StudentPersonalInfo(parts[0].toInt(), parts[1], parts[3])
+                StudentPersonalInfo(parts[0].toInt(), parts[1], parts[2])
             }
     }
 
