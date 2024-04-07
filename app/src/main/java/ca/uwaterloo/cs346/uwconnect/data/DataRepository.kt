@@ -23,7 +23,8 @@ class DataRepository {
     }
 
     fun getCommentsByReportId(reportId: Int): List<String> {
-        return reportInfos.filter { it.reportId == reportId }.map { it.comment }
+        val positionId = getPositionByReportId(reportId)?.positionId
+        return reportInfos.filter { it.positionId == positionId }.map { it.comment }
     }
 
     fun getCountByReportId(reportId: Int): Int {
