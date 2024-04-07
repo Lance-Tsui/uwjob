@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import ca.uwaterloo.cs346.uwconnect.R
+import ca.uwaterloo.cs346.uwconnect.common.DELIMITER
 import ca.uwaterloo.cs346.uwconnect.data.Company
 import ca.uwaterloo.cs346.uwconnect.data.DataRepository
 import ca.uwaterloo.cs346.uwconnect.data.Position
@@ -85,6 +87,16 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
+                trailingIcon = {
+                    if (searchTextState.value.text.isNotEmpty()) {
+                        IconButton(onClick = { searchTextState.value = TextFieldValue("") }) {
+                            Icon(
+                                imageVector = Icons.Filled.Clear,
+                                contentDescription = "Clear"
+                            )
+                        }
+                    }
+                }
             )
             Box(modifier = Modifier.heightIn(max = 75.dp)) {
                 val suggestions = filterJobs(searchTextState.value.text, dataRepository)
@@ -118,6 +130,16 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
+                trailingIcon = {
+                    if (searchTextState.value.text.isNotEmpty()) {
+                        IconButton(onClick = { searchTextState.value = TextFieldValue("") }) {
+                            Icon(
+                                imageVector = Icons.Filled.Clear,
+                                contentDescription = "Clear"
+                            )
+                        }
+                    }
+                }
             )
             Box(modifier = Modifier.heightIn(max = 75.dp)) {
                 val suggestions = filterJobs(searchTextState.value.text, dataRepository)
@@ -149,23 +171,24 @@ fun SuggestionsList(
     Column {
         for (job in suggestions) {
             Text(
-                text = "${job.first.companyName} ${job.second.positionName}",
+                text = "${job.first.companyName}${DELIMITER}${job.second.positionName}",
                 modifier = Modifier
                     .padding(8.dp)
-                    .clickable { onSuggestionSelected("${job.first.companyName} ${job.second.positionName}") }
+                    .clickable { onSuggestionSelected("${job.first.companyName}${DELIMITER}${job.second.positionName}") }
             )
         }
     }
 }
 
 fun filterJobs(query: String, dataRepository: DataRepository): List<Pair<Company, Position>> {
-    val parts = query.split(" ", limit = 2)
+    val parts = query.split(DELIMITER, limit = 2)
     val companyName = parts.getOrNull(0) ?: ""
     val positionName = parts.getOrNull(1) ?: ""
 
     val matchedCompanies = dataRepository.companies.filter { it.companyName.contains(companyName, ignoreCase = true) }
     val matchedPositions = dataRepository.positions.filter { it.positionName.contains(positionName, ignoreCase = true) }
-
+    println(dataRepository.companies)
+    println(dataRepository.positions)
     val matchedJobs = matchedCompanies.flatMap { company ->
         matchedPositions.filter { position ->
             position.companyId == company.companyId
@@ -194,7 +217,9 @@ fun ReportDetail(
         Row () {
             if (maleCount != null && validCount != null && validCount > 0) {
                 val femaleText = "${(validCount - maleCount).toFloat() / validCount.toFloat() * 100}% ♀"
-                CustomCircularProgressIndicator(Color.Magenta, Color.Blue, progress = (maleCount.toFloat() / validCount.toFloat()), customText = femaleText)
+                val maleText = "${maleCount.toFloat() / validCount.toFloat() * 100}% ♂"
+                val genderText = femaleText + "\n" + maleText
+                CustomCircularProgressIndicator(Color.Magenta, Color.Blue, progress = (maleCount.toFloat() / validCount.toFloat()), customText = genderText)
                 Spacer(modifier = Modifier.width(24.dp))
                 val ratingText = "${(rating / 5f * 100).toInt()}% 👍"
                 CustomCircularProgressIndicator(Color.LightGray, Color.Yellow, progress = rating / 5, customText = ratingText)

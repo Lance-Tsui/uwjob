@@ -1,51 +1,30 @@
 package ca.uwaterloo.cs346.uwconnect.data
 
-import java.util.Date
 
 class DataRepository {
-    val studentPersonalInfos = listOf(
-        StudentPersonalInfo(1, "Alice", "F"),
-        StudentPersonalInfo(2, "Bob", "M"),
-        StudentPersonalInfo(3, "Charlie", "M"),
-        StudentPersonalInfo(4, "Bella", "F")
-        // more student
-    )
 
-    val reports = listOf(
-        Report(1, 1, 101),
-        Report(2, 2, 102),
-        Report(3, 3, 103),
-        Report(4, 4, 102),
-        // more report
-    )
+    val studentpersonalinfofetch = StudentPersonalInfoFetch()
+    val studentPersonalInfos = studentpersonalinfofetch.fetchStudentPersonalInfo()
 
-    val positions = listOf(
-        Position(101, 1, "Software Engineer"),
-        Position(102, 2, "Data Scientist"),
-        Position(103, 3, "Product Manager")
-        // more position
-    )
+    val reportfetch = ReportFetch()
+    val reports = reportfetch.fetchReport()
 
-    val companies = listOf(
-        Company(1, "Google"),
-        Company(2, "Facebook"),
-        Company(3, "Amazon")
-        // more company
-    )
+    val positionfetch = PositionFetch()
+    val positions = positionfetch.fetchPosition()
 
-    val reportInfos = listOf(
-        ReportInfo(1, 101, 5, Date(), "Excellent work.", 3, 1, 2),
-        ReportInfo(2, 102, 4, Date(), "Good job, but needs more attention to detail.", 2, 2, 1),
-        ReportInfo(3, 103, 3, Date(), "Average performance.", 4, 1, 3)
-        // more reportinfo
-    )
+    val companyfetch = CompanyFetch()
+    val companies = companyfetch.fetchCompany()
+
+    val reportinfofetch = ReportInfoFetch()
+    val reportInfos = reportinfofetch.fetchReportInfo()
 
     fun getReportInfoByReportId(reportId: Int): ReportInfo? {
         return reportInfos.find { it.reportId == reportId }
     }
 
     fun getCommentsByReportId(reportId: Int): List<String> {
-        return reportInfos.filter { it.reportId == reportId }.map { it.comment }
+        val positionId = getPositionByReportId(reportId)?.positionId
+        return reportInfos.filter { it.positionId == positionId }.map { it.comment }
     }
 
     fun getCountByReportId(reportId: Int): Int {
@@ -57,9 +36,10 @@ class DataRepository {
     }
 
     fun getAvgRatingByReportId(reportId: Int): Float {
-        val reportInfosForId = reportInfos.filter { it.reportId == reportId }
-        val totalRatings = reportInfosForId.sumOf { it.rating }
-        val count = reportInfosForId.size
+        val positionId = getPositionByReportId(reportId)?.positionId
+        val reportInfosForPosition = reportInfos.filter { it.positionId == positionId }
+        val totalRatings = reportInfosForPosition.sumOf { it.rating }
+        val count = reportInfosForPosition.size
         return if (count > 0) totalRatings.toFloat() / count else 0f
     }
 
