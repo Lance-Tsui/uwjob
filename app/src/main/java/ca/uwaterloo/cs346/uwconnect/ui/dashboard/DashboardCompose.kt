@@ -217,7 +217,9 @@ fun ReportDetail(
         Row () {
             if (maleCount != null && validCount != null && validCount > 0) {
                 val femaleText = "${(validCount - maleCount).toFloat() / validCount.toFloat() * 100}% ♀"
-                CustomCircularProgressIndicator(Color.Magenta, Color.Blue, progress = (maleCount.toFloat() / validCount.toFloat()), customText = femaleText)
+                val maleText = "${maleCount.toFloat() / validCount.toFloat() * 100}% ♂"
+                val genderText = femaleText + "\n" + maleText
+                CustomCircularProgressIndicator(Color.Magenta, Color.Blue, progress = (maleCount.toFloat() / validCount.toFloat()), customText = genderText)
                 Spacer(modifier = Modifier.width(24.dp))
                 val ratingText = "${(rating / 5f * 100).toInt()}% 👍"
                 CustomCircularProgressIndicator(Color.LightGray, Color.Yellow, progress = rating / 5, customText = ratingText)
