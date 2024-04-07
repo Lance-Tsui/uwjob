@@ -3,42 +3,17 @@ package ca.uwaterloo.cs346.uwconnect.data
 import java.util.Date
 
 class DataRepository {
-    val studentPersonalInfos = listOf(
-        StudentPersonalInfo(1, "Alice", "F"),
-        StudentPersonalInfo(2, "Bob", "M"),
-        StudentPersonalInfo(3, "Charlie", "M"),
-        StudentPersonalInfo(4, "Bella", "F")
-        // more student
-    )
+    val dataFetch = DataFetch()
 
-    val reports = listOf(
-        Report(1, 1, 101),
-        Report(2, 2, 102),
-        Report(3, 3, 103),
-        Report(4, 4, 102),
-        // more report
-    )
+    val studentPersonalInfos = dataFetch.fetchStudentPersonalInfo()
 
-    val positions = listOf(
-        Position(101, 1, "Software Engineer"),
-        Position(102, 2, "Data Scientist"),
-        Position(103, 3, "Product Manager")
-        // more position
-    )
+    val reports = dataFetch.fetchReport()
 
-    val companies = listOf(
-        Company(1, "Google"),
-        Company(2, "Facebook"),
-        Company(3, "Amazon")
-        // more company
-    )
+    val positions = dataFetch.fetchPosition()
 
-    val reportInfos = listOf(
-        ReportInfo(1, 101, 5, Date(), "Excellent work.", 3, 1, 2),
-        ReportInfo(2, 102, 4, Date(), "Good job, but needs more attention to detail.", 2, 2, 1),
-        ReportInfo(3, 103, 3, Date(), "Average performance.", 4, 1, 3)
-        // more reportinfo
-    )
+    val companies = dataFetch.fetchCompany()
+
+    val reportInfos = dataFetch.fetchReportInfo()
 
     fun getReportInfoByReportId(reportId: Int): ReportInfo? {
         return reportInfos.find { it.reportId == reportId }
