@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -85,6 +86,16 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
+                trailingIcon = {
+                    if (searchTextState.value.text.isNotEmpty()) {
+                        IconButton(onClick = { searchTextState.value = TextFieldValue("") }) {
+                            Icon(
+                                imageVector = Icons.Filled.Clear,
+                                contentDescription = "Clear"
+                            )
+                        }
+                    }
+                }
             )
             Box(modifier = Modifier.heightIn(max = 75.dp)) {
                 val suggestions = filterJobs(searchTextState.value.text, dataRepository)
@@ -120,6 +131,16 @@ fun DashboardContent(viewModel: DashboardViewModel, dataRepository: DataReposito
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
+                trailingIcon = {
+                    if (searchTextState.value.text.isNotEmpty()) {
+                        IconButton(onClick = { searchTextState.value = TextFieldValue("") }) {
+                            Icon(
+                                imageVector = Icons.Filled.Clear,
+                                contentDescription = "Clear"
+                            )
+                        }
+                    }
+                }
             )
             Box(modifier = Modifier.heightIn(max = 75.dp)) {
                 val suggestions = filterJobs(searchTextState.value.text, dataRepository)
