@@ -28,7 +28,7 @@ class ReportFetch {
         // 分割字符串为行
         val lines = data.split("\n")
         // 跳过标题行，并映射每行为Report对象
-        return lines.drop(1) // 跳过标题行
+        return lines// 跳过标题行
             .filter { it.isNotEmpty() } // 过滤掉空行
             .map { line ->
                 val parts = line.split(",") // 分割每行为r_id, s_id, p_id
@@ -37,6 +37,6 @@ class ReportFetch {
     }
 
     fun fetchReport(): List<Report> {
-        return fetchRemoteFileAndParse("https://frc6399.com/Report.csv")
+        return fetchRemoteFileAndParse("https://frc6399.com/conn-report.php")
     }
 }
