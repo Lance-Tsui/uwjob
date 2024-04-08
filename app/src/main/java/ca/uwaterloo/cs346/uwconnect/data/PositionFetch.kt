@@ -36,6 +36,29 @@ class PositionFetch {
             }
     }
 
+    /*
+    JSON String to csv format string
+    fun parsePositionsJSON(jsonString: String): List<Position> {
+
+        val jsonArray = JSONArray(jsonString)
+
+        val result = StringBuilder()
+
+        for (i in 0 until jsonArray.length()) {
+            val jsonObj = jsonArray.getJSONObject(i)
+            val pId = jsonObj.getInt("p_id")
+            val positionName = jsonObj.getString("position_name")
+            var cId = jsonObj.getInt("c_id")
+
+            result.append("$p_id,$position_name,$c_id\n")
+        }
+
+        println(result)
+
+        return parsePositions(result.toString())
+    }
+    */
+
     fun fetchPosition(): List<Position> {
         return fetchRemoteFileAndParse("http://frc6399.com/conn-position.php")
     }
