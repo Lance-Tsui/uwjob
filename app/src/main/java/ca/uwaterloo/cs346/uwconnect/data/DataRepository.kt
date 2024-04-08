@@ -26,26 +26,33 @@ class DataRepository {
         return reportInfos.count { it.reportId == reportId }
     }
 
-    fun getCommentsByReportId(reportId: Int, reportInfos: List<ReportInfo>): List<String> {
-        // 使用filter函数筛选出与给定reportId相匹配的ReportInfo对象
-        // 然后使用map函数提取这些对象的comment属性
-        return reportInfos.filter { it.reportId == reportId }.map { it.comment }
+    fun getReportsByPositionId(positionId: Int): List<Report> {
+        return reports.filter {it.positionId == positionId}
     }
 
-    fun getAvgRatingByReportId(reportId: Int, reportInfos: List<ReportInfo>): Float {
-        // 使用filter函数筛选出与给定reportId相匹配的ReportInfo对象
-        val filteredReports = reportInfos.filter { it.reportId == reportId }
+    fun getCommentsByReportId(reportId: Int): List<String> {
+        val positionId = getPositionByReportId(reportId)?.positionId
 
-        // 如果没有找到匹配的报告，则返回0.0作为平均评分
+        val reportList = positionId?.let { getReportsByPositionId(it) } ?: emptyList()
+
+        val reportIds = reportList.map { it.reportId }
+
+        return reportInfos.filter { reportIds.contains(it.reportId) }.map { it.comment }
+    }
+
+
+    fun getAvgRatingByReportId(reportId: Int): Float {
+        val positionId = getPositionByReportId(reportId)?.positionId
+
+        val reportIds = positionId?.let { getReportsByPositionId(it) }?.map { it.reportId } ?: emptyList()
+
+        val filteredReports = reportInfos.filter { reportIds.contains(it.reportId) }
+
         if (filteredReports.isEmpty()) return 0f
 
-        // 使用map函数提取评分，然后使用average函数计算平均值
         return filteredReports.map { it.rating }.average().toFloat()
     }
 
-    fun getReportInfosByReportId(reportId: Int): List<ReportInfo> {
-        return reportInfos.filter { it.reportId == reportId }
-    }
 
     fun getPositionById(positionId: Int?, positions: List<Position>): Position? {
         return positions.find { it.positionId == positionId }

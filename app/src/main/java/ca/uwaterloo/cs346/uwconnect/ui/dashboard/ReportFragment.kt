@@ -45,8 +45,8 @@ class ReportFragment : Fragment() {
         val position = dataRepository.getPositionByReportId(reportId)
         val maleCount = position?.positionId?.let { dataRepository.numberOfMalesByPositionId(it) }
         val validCount = position?.positionId?.let { dataRepository.numberOfValidByPositionId(it) }
-        val rating = dataRepository.getAvgRatingByReportId(reportId, dataRepository.getReportInfosByReportId(reportId))
-        val comments = dataRepository.getCommentsByReportId(reportId, dataRepository.getReportInfosByReportId(reportId))
+        val rating = dataRepository.getAvgRatingByReportId(reportId)
+        val comments = dataRepository.getCommentsByReportId(reportId)
         binding.companyName.text = company?.companyName ?: "Company not found"
         binding.positionName.text = position?.positionName ?: "Position not found"
         var progress = 0

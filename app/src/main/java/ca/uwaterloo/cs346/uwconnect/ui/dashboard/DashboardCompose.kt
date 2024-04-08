@@ -285,8 +285,8 @@ fun ReportScreen(reportId: Int, dataRepository: DataRepository) {
     val position = dataRepository.getPositionByReportId(reportId)
     val maleCount = position?.positionId?.let { dataRepository.numberOfMalesByPositionId(it) }
     val validCount = position?.positionId?.let { dataRepository.numberOfValidByPositionId(it) }
-    val rating = dataRepository.getAvgRatingByReportId(reportId, dataRepository.getReportInfosByReportId(reportId))
-    val comments = dataRepository.getCommentsByReportId(reportId, dataRepository.getReportInfosByReportId(reportId))
+    val rating = dataRepository.getAvgRatingByReportId(reportId)
+    val comments = dataRepository.getCommentsByReportId(reportId)
 
     ReportDetail(company, position, maleCount, validCount, rating, comments)
 }
