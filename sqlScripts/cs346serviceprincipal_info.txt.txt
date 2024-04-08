@@ -1,0 +1,6 @@
+{
+  "appId": "4d00ec02-4e87-45e3-9b04-3c1a80da8b43",
+  "displayName": "cs346serviceprincipal",
+  "password": "HdR8Q~y24kJ4bRKgQSSqTBGOxb6PFHNwa34Ewbu2",
+  "tenant": "cb39da77-72c9-404b-a002-d4899a78d6f6"
+}

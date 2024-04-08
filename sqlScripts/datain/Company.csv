@@ -1,0 +1,309 @@
+c_id,c_name
+1,1password
+2,Abbott ADD
+3,Abnormal Security
+4,Accedo
+5,Achievers inc
+6,Addepar
+7,ADP
+8,AGF
+9,AI Arena
+10,Akuna Capital
+11,Altice USA
+12,Amazon
+13,AMD
+14,American Express
+15,ANSYS
+16,Apple
+18,Arctic Wolf
+19,Aterlo Networks
+20,Athelas
+21,Athos
+22,Atolio
+23,ATS Corporation
+24,Autodesk
+26,Autonomic
+27,Axonify
+28,Bank of America
+29,Bank of Montreal
+30,BDO
+31,Bentley Systems
+32,BetterUp
+33,Bitbuy
+34,Bitgo (Lumina)
+35,Blackberry
+36,bld.ai
+37,Bloomberg
+38,Bloq
+39,Bluescape
+40,Bolt
+41,Bonfire Interactive
+42,Boosted.AI
+43,Borrowell
+44,Brookfield Annuity
+45,Brookfield Renewables
+46,C.E. McMahon Professional Corporation
+47,CAAT Pension Plan
+48,Canadian Food Inspection Agency
+49,Canix
+50,Capco
+51,Capital1
+52,Carfax (Dev)
+53,Carta
+54,Castleton Commodities
+55,CEGN
+56,Cepton
+57,Cerebras Systems
+58,Ceridian
+59,Certik
+60,CGI
+61,Chisel.ai
+62,Christie Digital Systems
+63,CIBC
+64,Cisco
+65,Citibank
+66,Cockroach Labs
+67,CodeWithChris
+68,Coherent Logix
+69,Cohesity
+70,Coinbase
+71,Coinsquare
+72,Compound
+73,Connected
+74,Constant Contact
+75,Core Avionics
+76,Coursera
+77,Cover Technologies Inc
+78,CPP Investments
+79,Crawford and Co
+80,Creospark
+81,Cube Group
+82,Curinos
+83,Curvegrid (Japan)
+84,D2L
+85,data.world
+86,Databrick
+87,Datadog
+88,Deep Breathe
+89,Deep Genomics
+90,Dejero
+91,Deloitte
+92,Delphia Asset Management
+93,Digital Extremes (Marketing)
+94,Digitaled
+95,DocuSign
+96,Draper
+97,Dreamschools
+98,Dropbase (Castodia)
+99,DRW
+100,Durovac
+101,Ecobee
+102,Ecompliance
+103,Elekta
+104,Embark Trucks
+105,Enlighted Inc
+106,Eon Media
+107,Equifax D&A
+108,Equitable Life Insurance Company
+109,ESCRYPT
+110,eSentire
+111,EY
+112,Facebook
+113,Faire
+114,Fleet Complete
+115,Flex AI
+116,Flipp
+117,Float
+118,Ford
+119,Forethought AI
+120,Freshbooks
+121,Genesys Laboratories
+122,Geotab
+123,Get ResQ
+124,Glu
+125,Google
+126,groq (Groq Inc)
+127,Gsoft
+128,H2Analytics
+129,Halp
+130,Hatch Credit
+131,HeadSpin
+132,High Q Technologies
+133,Hockeystick
+134,Home Depot (Dev)
+135,HomeX
+136,HOOPP (Health Care of Ontario Pension Plan)
+137,Horizon Studio
+138,Huawei
+139,Hubdoc
+140,HubSpot
+141,IBM
+142,Imagine Communications Corp
+143,Index Exchange
+144,Inflight
+145,Information Builders
+146,Insticator
+147,Instinet Canada
+148,Intact Labs
+149,Integrate.ai
+150,Intel
+151,Intuit
+152,iS5 Communications
+153,ISARA
+154,Jane Street
+155,Jays Care Foundation (TBJ)
+156,Jobox.ai
+157,Kaleidascape
+158,Kambeo
+159,KeepTruckin
+160,Kiavi
+161,Kinaxis
+162,Kodiak Robotics
+163,Konrad Group
+164,LCBO
+165,League
+166,Level
+167,LifeWorks
+168,Lifion by Adp
+169,Linkedin
+170,Loblaw
+171,Loblaw Digital
+172,Manulife
+173,Mastercard Foundation
+174,Mattermost
+175,McAfee
+176,Metrist
+177,Microart Services
+178,Microsoft
+179,Molex
+180,MotoInsight
+181,Motorola Solutions
+182,Moveworks
+183,NASDAQ
+184,Newfront Insurance
+185,Nextroll
+186,Nissan
+187,Nokia
+188,Noom
+189,Norm Li
+190,NuraLogix
+191,Nuro
+192,Nuvalence
+193,Nuvation
+194,Nvidia
+195,OANDA
+196,Okta
+197,OMERS
+198,Onsemi
+199,Ontario Institute for Cancer Research
+200,Ontario Ministry of Health
+201,OpenText
+202,OPSEU Pension Trust
+203,Oracle
+204,Penfield.AI
+205,Pepsico
+206,PlayStation
+207,PointClickCare
+208,primer.ai
+209,Prodigy Education
+210,Qualcomm (Markham)
+211,Radix Labs
+212,RBC
+213,RBC (Business Analyst)
+214,RBC (Data Analyst)
+215,RBC (Risk Management)
+216,Reebee
+217,Relay Financial
+218,Relic Entertainment
+219,Remitbee (BLACKLISTED!)
+220,Replicant Inc
+221,ResQ
+222,Ritual
+223,Robinhood
+224,Roblox
+225,Rocscience
+226,Rogers
+227,Sagen
+228,Samsung Research America
+229,SAP
+230,SAP ML
+231,Scotiabank
+232,Scrawlr
+233,Shinydocs
+234,Shopify
+235,Shoplogic
+236,Sibros
+237,SideFX
+238,Simplii Financial
+239,Skydio
+240,Smile CDR
+241,Snap Inc
+242,Snowflake computing
+243,Solana Labs
+244,SoundHound
+245,SPS Commerce
+246,Square
+247,Squaredance
+248,Squarepoint Capital
+249,SS&C Technologies
+250,Stablecorp
+251,Stackadapt
+252,Standardbio Tools
+253,Stealth Startup
+254,Stratum ai
+255,Super (Snapcommerce)
+256,Sync.com
+257,System 1
+258,Tactic Studios
+259,Tailscale
+260,TD
+261,Tealbook
+262,Teledyne Dalsa
+263,Tesla
+264,Texada Software
+265,TextNow
+266,The Co-operators
+267,The Cooperators
+268,The Empire Life Insurance Company
+269,The Flight Deck
+270,theScore
+271,Thomson Reuters
+272,Thumbtack
+273,TikTok
+274,Titanium Agency
+275,TOOLBX
+276,Toronto Transit Commission
+277,Toyota Motor Manufacturing Canada
+278,Trexo Robotics
+279,Tribalscale
+280,Trustwave Holdings
+281,Tulip Retail
+282,TutorOcean
+283,Tweepsmap
+284,Twitter
+285,Uber
+286,Ubisoft
+287,UHN (DATA Team)
+288,Ultimate Software
+289,Union Bank of Switzerland (UBS Group AG)
+290,Untether AI
+291,Uplift
+292,Veeva Systems
+293,Vendia
+294,Veriday
+295,Versa Networks
+296,Versett
+297,VerticalScope
+298,Vidyard
+299,Voiceform
+300,Waabi Innovation
+301,Wattpad
+302,Wayfair
+303,Wealthsimple
+304,Wind River
+305,Wish
+306,WSIB Innovation Lab
+307,Xanadu
+308,Yext
+309,Zenreach/Greenfield
+310,Zighra

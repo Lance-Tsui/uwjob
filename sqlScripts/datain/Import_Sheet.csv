@@ -1,0 +1,379 @@
+student_name,workterm_number,Position,Company,salary,Benefits,Report_Year
+Reddit 1,4,NULL,1password,50,NULL,2023
+Reddit 2,2,NULL,Abbott ADD,22.05,NULL,NULL
+Reddit 3,NULL,NULL,Abnormal Security,69,5k relocation,NULL
+Reddit 4,3,NULL,Accedo,26,NULL,NULL
+Reddit 5,NULL,NULL,?Achievers inc,23,NULL,NULL
+Reddit 6,5,NULL,Addepar,44,NULL,NULL
+Reddit 7,NULL,NULL,?ADP,40,NULL,NULL
+Reddit 8,NULL,NULL,AGF,18.5,NULL,NULL
+Reddit 9,NULL,NULL,AI Arena,45,NULL,NULL
+Reddit 10,NULL,NULL,Akuna Capital,88,return flight + corporate housing,NULL
+Reddit 11,6,NULL,Altice USA,35,NULL,NULL
+Reddit 12,NULL,NULL,Amazon,70,2425/month tax-free relocation stipend,NULL
+Reddit 12,4,NULL,AMD,27,NULL,NULL
+Reddit 13,6,NULL,AMD,29.33,NULL,NULL
+Reddit 14,NULL,NULL,American Express,34.5,NULL,NULL
+Reddit 15,5,NULL,ANSYS,34,math coop average + 10%,NULL
+Reddit 16,3,Product Design,?Apple,45.8,1300-1500 stipend/month,NULL
+Reddit 16,4,Product Design,?Apple,49.84,1350 stipend/month,NULL
+Reddit 16,5,Product Design,?Apple,59.2,1000 stipend/month,NULL
+Reddit 17,4,Hardware,Apple,56.58,3335/mo pretax relocation,2024
+Reddit 18,4,System Level Test Engineer,Apple,56.58,1k/mo stipend,2024
+Reddit 19,3,Software Engineer,Arctic Wolf,36,NULL,2023
+Reddit 19,4,Software Engineer,Arctic Wolf,42,NULL,2023
+Reddit 20,4,NULL,Aterlo Networks,30,NULL,NULL
+Reddit 21,2,NULL,Athelas,33,1200/mo USD housing stipend (2nd coop) + flights,NULL
+Reddit 22,NULL,NULL,Athos,38.86,NULL,NULL
+Reddit 23,3,NULL,Atolio,34,NULL,NULL
+Reddit 24,6,NULL,ATS Corporation,28,NULL,NULL
+Reddit 25,4,NULL,?Autodesk,33,NULL,2023
+Reddit 26,5,NULL,Autodesk,34,NULL,2024
+Reddit 27,4,NULL,Autonomic,38,NULL,NULL
+Reddit 27,5,NULL,Autonomic,41,NULL,NULL
+Reddit 27,2,NULL,Axonify,21.25,NULL,NULL
+Reddit 28,6,NULL,Axonify,30,NULL,NULL
+Reddit 29,2,NULL,Bank of America,29.63,NULL,NULL
+Reddit 30,1,NULL,Bank of America,26.97,NULL,NULL
+Reddit 30,3,NULL,BDO,32,NULL,NULL
+Reddit 31,2,NULL,BDO,25,NULL,NULL
+Reddit 32,1,NULL,Bentley Systems,30,NULL,NULL
+Reddit 33,2,NULL,Bentley Systems,33,NULL,NULL
+Reddit 34,NULL,NULL,BetterUp,49.04,NULL,NULL
+Reddit 35,1,NULL,Bitbuy,20,NULL,NULL
+Reddit 36,NULL,NULL,?Bitgo (Lumina),57.69,NULL,NULL
+Reddit 37,NULL,NULL,Blackberry,21,NULL,NULL
+Reddit 38,NULL,NULL,bld.ai,40.38,NULL,NULL
+Reddit 39,5,NULL,Bloomberg,48,5100 stipend,NULL
+Reddit 40,2,NULL,Bloq,31.15,950/mo benefits,NULL
+Reddit 40,3,NULL,Bloq,35.77,950/mo benefits,NULL
+Reddit 41,6,NULL,Bluescape,34,NULL,NULL
+Reddit 42,1,Business Analyst,Bank of Montreal,24,NULL,NULL
+Reddit 43,2,Product Analyst,Bank of Montreal,28,NULL,NULL
+Reddit 44,1,Software Developer,Bank of Montreal,29.5,NULL,NULL
+Reddit 45,NULL,NULL,Bolt,75,NULL,NULL
+Reddit 46,2,NULL,Bonfire Interactive,24,NULL,NULL
+Reddit 47,NULL,NULL,Boosted.AI,35,NULL,NULL
+Reddit 48,5,Mobile Developer,Borrowell,35,NULL,NULL
+Reddit 49,NULL,NULL,Brookfield Annuity,35,NULL,NULL
+Reddit 50,NULL,NULL,Brookfield Renewables,26,NULL,NULL
+Reddit 51,NULL,NULL,C.E. McMahon Professional Corporation,19,NULL,NULL
+Reddit 52,2,NULL,CAAT Pension Plan,18,NULL,NULL
+Reddit 53,5,Full Stack Developer,Canadian Food Inspection Agency,24.77,NULL,NULL
+Reddit 54,NULL,NULL,?Canix,49,1000/mo relocation in-person,NULL
+Reddit 55,NULL,NULL,?Capco,28,NULL,NULL
+Reddit 56,5,NULL,Capital1,38,Including signing bonus,NULL
+Reddit 56,6,NULL,Capital1,39,Including signing bonus,NULL
+Reddit 57,2,Developer,Carfax (Dev),26,NULL,NULL
+Reddit 58,4,Software Engineer,Carta,30.75,NULL,NULL
+Reddit 59,5,Android Engineer,Carta,37.5,NULL,2024
+Reddit 60,NULL,NULL,Castleton Commodities,38,NULL,NULL
+Reddit 61,NULL,NULL,CEGN,22,NULL,NULL
+Reddit 62,NULL,NULL,Cepton,35,500/mo housing,NULL
+Reddit 63,NULL,NULL,Cerebras Systems,38,NULL,NULL
+Reddit 64,3,NULL,Ceridian,32,NULL,2023
+Reddit 65,NULL,Marketing Coordinator,Ceridian,22,NULL,2023
+Reddit 66,4,NULL,Certik,54.4,NULL,NULL
+Reddit 67,3,NULL,CGI,18,NULL,NULL
+Reddit 68,5,NULL,Chisel.ai,40,NULL,NULL
+Reddit 69,3,NULL,Christie Digital Systems,22,NULL,NULL
+Reddit 70,3,NULL,CIBC,28.43,NULL,NULL
+Reddit 71,1,NULL,Cisco,32,NULL,NULL
+Reddit 74,NULL,NULL,Citibank,44,2000 CAD housing stipend,2024
+Reddit 75,NULL,NULL,Cockroach Labs,46.15,1.5k signing bonus,NULL
+Reddit 76,1,NULL,CodeWithChris,20,NULL,NULL
+Reddit 78,3,NULL,Coherent Logix,29.43,NULL,NULL
+Reddit 79,NULL,NULL,Cohesity,49,NULL,NULL
+Reddit 80,NULL,NULL,Coinbase,50,NULL,NULL
+Reddit 77,1,NULL,Coinsquare,28,NULL,NULL
+Reddit 81,5,NULL,Coinsquare,44,NULL,NULL
+Reddit 82,NULL,NULL,Compound,58.85,NULL,NULL
+Reddit 83,6,NULL,Connected,37,NULL,NULL
+Reddit 84,4,NULL,Constant Contact,35,NULL,2023
+Reddit 85,1,NULL,Core Avionics,20,NULL,NULL
+Reddit 86,NULL,NULL,Coursera,40.38,NULL,NULL
+Reddit 87,NULL,NULL,Cover Technologies Inc,40.58,NULL,NULL
+Reddit 88,2,Software Engineer,CPP Investments,37,4% of yearly salary (70k) as vacation pay,2024
+Reddit 89,NULL,Business Analyst,Crawford and Co,20,NULL,2022
+Reddit 90,NULL,NULL,Creospark,18,NULL,NULL
+Reddit 91,NULL,NULL,Cube Group,101.45,NULL,2024
+Reddit 92,2,NULL,Curinos,34,NULL,NULL
+Reddit 93,NULL,NULL,Curvegrid (Japan),15.8,NULL,NULL
+Reddit 94,NULL,NULL,D2L,28,NULL,NULL
+Reddit 95,NULL,NULL,data.world,10.93,100 USD remote stipend,NULL
+Reddit 96,NULL,NULL,Databrick,55,1.3k/mo housing,NULL
+Reddit 97,NULL,NULL,Datadog,40,2000 USD/mo housing,NULL
+Reddit 98,3,NULL,Deep Breathe,32.92,NULL,NULL
+Reddit 99,NULL,NULL,Deep Genomics,28.85,NULL,NULL
+Reddit 100,3,NULL,Dejero,31.54,NULL,NULL
+Reddit 101,NULL,NULL,Deloitte,27,NULL,NULL
+Reddit 102,NULL,NULL,Delphia Asset Management,29.35,NULL,NULL
+Reddit 103,2,NULL,Digital Extremes (Marketing),20,NULL,NULL
+Reddit 104,3,NULL,Digitaled,27.43,NULL,NULL
+Reddit 105,NULL,NULL,DocuSign,52,NULL,NULL
+Reddit 106,NULL,NULL,Draper,35,NULL,NULL
+Reddit 107,NULL,NULL,Dreamschools,22,NULL,NULL
+Reddit 108,3,NULL,Dropbase (Castodia),29,NULL,NULL
+Reddit 108,4,NULL,Dropbase (Castodia),31,NULL,NULL
+Reddit 109,NULL,NULL,DRW,36,NULL,NULL
+Reddit 110,4,NULL,Durovac,23,NULL,NULL
+Reddit 111,NULL,NULL,Ecobee,38,NULL,NULL
+Reddit 112,4,NULL,Ecompliance,26,NULL,NULL
+Reddit 113,1,NULL,Elekta,27,NULL,NULL
+Reddit 114,NULL,NULL,Embark Trucks,57.69,Salary is 10k/month (USD in person / CAD for remote),NULL
+Reddit 115,5,NULL,Enlighted Inc,36,NULL,NULL
+Reddit 116,3,NULL,Eon Media,21.92,NULL,NULL
+Reddit 117,1,NULL,Equifax D&A,22,NULL,NULL
+Reddit 118,2,NULL,Equitable Life Insurance Company,23,NULL,NULL
+Reddit 119,3,NULL,ESCRYPT,26,NULL,NULL
+Reddit 119,4,NULL,ESCRYPT,30,NULL,NULL
+Reddit 120,NULL,NULL,eSentire,24.5,NULL,NULL
+Reddit 121,3,NULL,EY,28,NULL,NULL
+Reddit 122,NULL,NULL,Facebook,35.77,1200 WFH stipend,NULL
+Reddit 123,4,NULL,Faire,42,NULL,NULL
+Reddit 124,3,NULL,Fleet Complete,26,NULL,NULL
+Reddit 125,5,NULL,Fleet Complete,32,NULL,NULL
+Reddit 126,NULL,NULL,?Flex AI,28.85,NULL,NULL
+Reddit 127,NULL,NULL,Flipp,27.05,NULL,NULL
+Reddit 128,NULL,NULL,Float,50,NULL,NULL
+Reddit 129,3,NULL,Ford,25.77,NULL,NULL
+Reddit 129,4,NULL,Ford,26.8,NULL,NULL
+Reddit 129,5,NULL,Ford,28,NULL,NULL
+Reddit 130,NULL,NULL,Forethought AI,40.38,NULL,NULL
+Reddit 131,5,NULL,Freshbooks,33,NULL,NULL
+Reddit 132,3,NULL,Genesys Laboratories,30.17,NULL,NULL
+Reddit 133,3,NULL,Geotab,30,NULL,NULL
+Reddit 134,5,NULL,Get ResQ,43,NULL,NULL
+Reddit 135,2,NULL,Glu,25,NULL,NULL
+Reddit 135,4,NULL,Glu,30,NULL,NULL
+Reddit 136,NULL,Canadian Co-op,Google,38.45,"4k housing stipend (Canada),  6k USD housing stipend (USA)",NULL
+Reddit 136,NULL,US Co-op,Google,64.25,"4k housing stipend (Canada),  6k USD housing stipend (USA)",NULL
+Reddit 137,1,NULL,groq (Groq Inc),35,NULL,NULL
+Reddit 137,6,NULL,groq (Groq Inc),42,NULL,NULL
+Reddit 138,4,NULL,Gsoft,40,NULL,NULL
+Reddit 139,NULL,NULL,H2Analytics,23,NULL,NULL
+Reddit 140,3,NULL,Halp,38,NULL,NULL
+Reddit 141,NULL,NULL,Hatch Credit,66.35,NULL,NULL
+Reddit 142,3,NULL,HeadSpin,32,NULL,NULL
+Reddit 143,3,NULL,High Q Technologies,25,NULL,NULL
+Reddit 144,1,NULL,Hockeystick,21,NULL,NULL
+Reddit 145,2,NULL,Home Depot (Dev),20,NULL,NULL
+Reddit 146,3,NULL,HomeX,33,NULL,NULL
+Reddit 147,2,NULL,HOOPP (Health Care of Ontario Pension Plan),22.25,NULL,NULL
+Reddit 148,3,NULL,Horizon Studio,27,NULL,2023
+Reddit 149,4,NULL,Huawei,34,NULL,NULL
+Reddit 150,3,NULL,Hubdoc,28.8,NULL,NULL
+Reddit 151,NULL,NULL,HubSpot,70.34,NULL,NULL
+Reddit 152,4,NULL,IBM,29,NULL,NULL
+Reddit 153,4,Product Design,IBM,32,IBM stock at a 15% discount off the market price,2023
+Reddit 154,1,NULL,?Imagine Communications Corp,21,NULL,NULL
+Reddit 154,2,NULL,?Imagine Communications Corp,24,NULL,NULL
+Reddit 154,3,NULL,?Imagine Communications Corp,26,NULL,NULL
+Reddit 154,4,NULL,?Imagine Communications Corp,29,NULL,NULL
+Reddit 154,5,NULL,?Imagine Communications Corp,31,NULL,NULL
+Reddit 154,6,NULL,?Imagine Communications Corp,33,NULL,NULL
+Reddit 155,NULL,NULL,Index Exchange,30,NULL,NULL
+Reddit 156,5,NULL,?Inflight,26.5,NULL,NULL
+Reddit 157,NULL,NULL,?Information Builders,50,NULL,NULL
+Reddit 158,NULL,NULL,?Insticator,22.5,NULL,NULL
+Reddit 159,2,Site Reliability Engineer,Instinet Canada,36,"3k stipend (2nd coop, sre analyst)",NULL
+Reddit 160,3,NULL,Intact Labs,30.5,NULL,NULL
+Reddit 160,2,Data Science,Intact Labs,32,NULL,NULL
+Reddit 160,5,NULL,Intact Labs,39,NULL,NULL
+Reddit 161,NULL,NULL,Integrate.ai,38.75,NULL,NULL
+Reddit 162,6,NULL,Intel,35,NULL,NULL
+Reddit 163,3,NULL,Intuit,47,5k USD stipend,NULL
+Reddit 164,6,NULL,iS5 Communications,32,NULL,NULL
+Reddit 165,3,NULL,ISARA,30.7,NULL,NULL
+Reddit 166,NULL,NULL,Jane Street,130.07,2.1k USD/mo housing stipend + 10k USD signing bonus,NULL
+Reddit 167,1,NULL,Jays Care Foundation (TBJ),18,NULL,NULL
+Reddit 168,3,NULL,Jobox.ai,44.47,NULL,NULL
+Reddit 169,6,NULL,Kaleidascape,48,NULL,NULL
+Reddit 170,NULL,NULL,Kambeo,25,NULL,NULL
+Reddit 171,NULL,NULL,KeepTruckin,30,NULL,NULL
+Reddit 172,NULL,NULL,Kiavi,51.92,NULL,NULL
+Reddit 173,1,NULL,Kinaxis,24,NULL,NULL
+Reddit 174,2,NULL,Kinaxis,34,NULL,NULL
+Reddit 174,4,NULL,Kinaxis,29,NULL,NULL
+Reddit 175,6,NULL,Kodiak Robotics,66.33,NULL,NULL
+Reddit 176,NULL,NULL,Konrad Group,34.62,NULL,NULL
+Reddit 177,NULL,NULL,LCBO,27.5,NULL,NULL
+Reddit 178,4,NULL,League,33,NULL,NULL
+Reddit 178,6,NULL,League,31,NULL,NULL
+Reddit 179,NULL,NULL,Level,75,200 for equipment + 100/mo UberEats allowance,NULL
+Reddit 180,NULL,NULL,LifeWorks,22.5,NULL,NULL
+Reddit 181,NULL,NULL,Lifion by Adp,42,NULL,NULL
+Reddit 182,NULL,NULL,?Linkedin,73.49,Corporate housing(/ 7K stipend),NULL
+Reddit 183,2,Data Science,Loblaw,31,NULL,NULL
+Reddit 184,2,Data Analyst,Loblaw Digital,30,NULL,2023
+Reddit 185,3,NULL,Manulife,26,NULL,NULL
+Reddit 186,1,NULL,Mastercard Foundation,19.5,NULL,NULL
+Reddit 186,5,NULL,?Mattermost,35,NULL,NULL
+Reddit 187,6,NULL,?Mattermost,45,NULL,NULL
+Reddit 188,2,NULL,McAfee,25,NULL,NULL
+Reddit 189,NULL,NULL,Metrist,33.65,NULL,NULL
+Reddit 190,1,NULL,Microart Services,26,NULL,NULL
+Reddit 191,NULL,NULL,Microsoft,62.22,12k housing stipend + 1.6k transport stipend + flights covered,2024
+Reddit 192,2,NULL,Molex,23,NULL,NULL
+Reddit 192,4,NULL,Molex,25,NULL,NULL
+Reddit 193,NULL,NULL,MotoInsight,17.31,NULL,NULL
+Reddit 194,5,Product Design,Motorola Solutions,37,NULL,2024
+Reddit 195,NULL,NULL,Moveworks,66.33,500/month stipend,NULL
+Reddit 196,NULL,NULL,NASDAQ,28,NULL,NULL
+Reddit 197,6,NULL,Newfront Insurance,90,NULL,NULL
+Reddit 198,NULL,NULL,Nextroll,57,60/month WFH allowance,NULL
+Reddit 199,NULL,NULL,Nissan,21,NULL,NULL
+Reddit 200,5,NULL,Nokia,33,NULL,NULL
+Reddit 200,4,NULL,Nokia,25,NULL,NULL
+Reddit 201,NULL,NULL,Noom,63.57,1500 USD/mo housing,NULL
+Reddit 202,NULL,NULL,Norm Li,25,NULL,NULL
+Reddit 203,3,NULL,NuraLogix,28,NULL,NULL
+Reddit 204,NULL,NULL,Nuro,70.23,3k bonus,NULL
+Reddit 205,5,NULL,Nuvalence,60,Remote available,NULL
+Reddit 206,3,NULL,Nuvation,33.75,NULL,2023
+Reddit 207,2,NULL,Nvidia,30.5,500/wk housing,NULL
+Reddit 207,3,NULL,Nvidia,33,500/wk housing,NULL
+Reddit 207,4,NULL,Nvidia,34.5,500/wk housing,NULL
+Reddit 207,5,NULL,Nvidia,36,500/wk housing,NULL
+Reddit 207,2,NULL,OANDA,23.08,NULL,NULL
+Reddit 208,5,NULL,OANDA,31.25,NULL,NULL
+Reddit 209,NULL,NULL,Okta,42.5,NULL,NULL
+Reddit 210,4,NULL,OMERS,28,NULL,NULL
+Reddit 211,NULL,NULL,Onsemi,30.29,NULL,NULL
+Reddit 212,1,NULL,Ontario Institute for Cancer Research,18.6,NULL,NULL
+Reddit 212,2,NULL,Ontario Institute for Cancer Research,21,NULL,NULL
+Reddit 213,1,NULL,Ontario Ministry of Health,17.27,NULL,NULL
+Reddit 213,2,NULL,Ontario Ministry of Health,18.42,NULL,NULL
+Reddit 214,2,NULL,OpenText,21,NULL,NULL
+Reddit 214,3,NULL,OpenText,30.25,NULL,NULL
+Reddit 215,NULL,NULL,OPSEU Pension Trust,25.5,NULL,NULL
+Reddit 216,3,NULL,Oracle,35,NULL,NULL
+Reddit 216,4,NULL,Oracle,37,NULL,NULL
+Reddit 217,NULL,NULL,Penfield.AI,22.5,NULL,NULL
+Reddit 218,NULL,NULL,?Pepsico,22,NULL,NULL
+Reddit 219,2,NULL,PlayStation,31,NULL,2023
+Reddit 220,2,NULL,PointClickCare,27,NULL,NULL
+Reddit 221,4,NULL,primer.ai,50,NULL,NULL
+Reddit 222,5,NULL,Prodigy Education,33,NULL,NULL
+Reddit 223,4,NULL,Qualcomm (Markham),42,1500/mo housing,2024
+Reddit 224,NULL,NULL,Radix Labs,33.82,NULL,NULL
+Reddit 226,2,NULL,RBC (Business Analyst),22,NULL,NULL
+Reddit 227,NULL,NULL,RBC (Data Analyst),28,NULL,NULL
+Reddit 228,1,NULL,RBC (Risk Management),30,NULL,NULL
+Reddit 229,1,Software Developer,RBC,22.5,NULL,NULL
+Reddit 229,5,Software Developer,RBC,27.75,NULL,NULL
+Reddit 230,2,NULL,Reebee,27.4,NULL,NULL
+Reddit 231,NULL,NULL,Relay Financial,35,27-43/hr depending on term (see WaterlooWorks posting),NULL
+Reddit 232,2,NULL,Relic Entertainment,25,NULL,NULL
+Reddit 233,3,NULL,Remitbee (BLACKLISTED!),20,BLACKLISTED!,NULL
+Reddit 234,4,NULL,Replicant Inc,36,NULL,NULL
+Reddit 235,5,NULL,ResQ,36,NULL,NULL
+Reddit 236,6,NULL,Ritual,46,NULL,NULL
+Reddit 237,NULL,NULL,Robinhood,64.93,2000 USD/mo housing,NULL
+Reddit 238,NULL,Data Science,Roblox,62,"1k WFH stipend, 7K housing stipend",NULL
+Reddit 239,2,NULL,Rocscience,24,NULL,NULL
+Reddit 240,2,NULL,?Rogers,25.75,NULL,NULL
+Reddit 241,2,NULL,Sagen,23,NULL,2022
+Reddit 241,3,NULL,Sagen,25,NULL,2022
+Reddit 242,NULL,NULL,Samsung Research America,52.75,9k USD stipend,NULL
+Reddit 243,2,NULL,SAP,24,NULL,NULL
+Reddit 244,1,NULL,SAP ML,40,NULL,NULL
+Reddit 245,3,Data Science/Software Developer,Scotiabank,31,NULL,NULL
+Reddit 246,3,NULL,Scrawlr,32.92,NULL,NULL
+Reddit 247,3,NULL,Shinydocs,27.43,NULL,NULL
+Reddit 248,NULL,NULL,?Shopify,40,Stipends available,NULL
+Reddit 249,NULL,NULL,Shoplogic,27,NULL,NULL
+Reddit 250,NULL,NULL,Sibros,60.87,700 housing stipend,NULL
+Reddit 251,6,NULL,SideFX,46,NULL,NULL
+Reddit 252,NULL,Product Analyst,Simplii Financial,26,NULL,NULL
+Reddit 253,3,NULL,Skydio,52,NULL,NULL
+Reddit 254,4,Hardware,Skydio,64.93,5k pretax relocation,2024
+Reddit 255,3,NULL,Smile CDR,36,NULL,NULL
+Reddit 256,NULL,NULL,Snap Inc,70.23,$2500 USD/mo housing stipend + $500 USD/mo misc,NULL
+Reddit 257,NULL,NULL,Snowflake computing,49,stipends,NULL
+Reddit 258,NULL,NULL,Solana Labs,81.16,3k/mo USD housing,NULL
+Reddit 259,NULL,NULL,SoundHound,36.35,NULL,NULL
+Reddit 261,3,NULL,SPS Commerce,30,NULL,2023
+Reddit 262,NULL,NULL,Square,38,1k/mo housing,NULL
+Reddit 263,2,NULL,Squaredance,35,NULL,NULL
+Reddit 264,NULL,NULL,Squarepoint Capital,40.87,1.5k/mo allowance,NULL
+Reddit 265,2,NULL,SS&C Technologies,26,NULL,NULL
+Reddit 265,3,NULL,SS&C Technologies,32,NULL,NULL
+Reddit 265,4,NULL,SS&C Technologies,38,NULL,NULL
+Reddit 266,2,NULL,Stablecorp,22.5,NULL,NULL
+Reddit 267,5,NULL,Stackadapt,50,NULL,NULL
+Reddit 268,3,NULL,Standardbio Tools,22,4% vacation pay,2023
+Reddit 269,NULL,NULL,Stealth Startup,64,NULL,NULL
+Reddit 270,NULL,NULL,Stratum ai,32.5,NULL,NULL
+Reddit 271,3,NULL,Super (Snapcommerce),37,Weekly Uber Eats,2023
+Reddit 272,1,NULL,Sync.com,20,NULL,NULL
+Reddit 273,2,NULL,System 1,28,NULL,NULL
+Reddit 274,NULL,NULL,Tactic Studios,35,NULL,2023
+Reddit 275,NULL,NULL,?Tailscale,35,NULL,NULL
+Reddit 276,1,NULL,TD,25,NULL,NULL
+Reddit 276,2,NULL,TD,29.66,NULL,NULL
+Reddit 276,4,NULL,TD,30,NULL,NULL
+Reddit 278,3,Product Design,TD,28,NULL,2022
+Reddit 279,NULL,NULL,Tealbook,35,NULL,NULL
+Reddit 280,1,NULL,Teledyne Dalsa,22.5,NULL,NULL
+Reddit 281,NULL,Unspecified roles remote,Tesla,32,NULL,NULL
+Reddit 281,NULL,Unspecified roles,Tesla,40.58,"~4k relocation (onsite, Fremont/Palo Alto)",NULL
+Reddit 282,4,Firmware,Tesla,64.93,"850/mo stipend, 51/hr USD + 700/mo housing (4th yr)",NULL
+Reddit 283,4,Hardware,Tesla,56.81,2.8k post tax relocation,2024
+Reddit 284,1,NULL,Texada Software,21,NULL,2022
+Reddit 285,3,NULL,Texada Software,25,NULL,2023
+Reddit 286,4,NULL,TextNow,35,1500 stipend (4th coop),NULL
+Reddit 287,1,NULL,The Cooperators,20,NULL,2021
+Reddit 288,1,NULL,The Co-operators,21,NULL,NULL
+Reddit 289,3,NULL,The Empire Life Insurance Company,25,NULL,NULL
+Reddit 290,NULL,NULL,The Flight Deck,23,NULL,NULL
+Reddit 291,4,NULL,theScore,40,NULL,2023
+Reddit 292,2,NULL,Thomson Reuters,32,NULL,NULL
+Reddit 293,6,NULL,Thumbtack,42,"signing bonus + 500 remote stipend; 6th coop: 1k sign bonus + 1.5k WFH/other benefits, ",NULL
+Reddit 294,NULL,Machine Learning Engineer,TikTok,47,14/hr housing,2024
+Reddit 295,1,NULL,Titanium Agency,25,NULL,NULL
+Reddit 295,2,NULL,Titanium Agency,27,NULL,NULL
+Reddit 295,5,NULL,Titanium Agency,35,NULL,NULL
+Reddit 296,NULL,NULL,Toyota Motor Manufacturing Canada,27.43,NULL,2023
+Reddit 297,4,NULL,TOOLBX,30,NULL,NULL
+Reddit 297,6,NULL,TOOLBX,45,NULL,NULL
+Reddit 298,NULL,NULL,Trexo Robotics,32.92,NULL,NULL
+Reddit 299,NULL,NULL,?Tribalscale,25,NULL,NULL
+Reddit 300,3,NULL,Trustwave Holdings,25,NULL,NULL
+Reddit 301,6,NULL,Toronto Transit Commission,27.65,NULL,NULL
+Reddit 302,1,NULL,Tulip Retail,20,NULL,NULL
+Reddit 302,2,NULL,Tulip Retail,25,NULL,NULL
+Reddit 302,3,NULL,Tulip Retail,30,NULL,NULL
+Reddit 303,NULL,NULL,TutorOcean,20,NULL,NULL
+Reddit 304,NULL,NULL,Tweepsmap,27.65,NULL,NULL
+Reddit 305,NULL,NULL,Twitter,40,1000/mo WFH stipend,NULL
+Reddit 306,NULL,NULL,Uber,44,1500/mo housing stipend,NULL
+Reddit 307,3,NULL,?Ubisoft,29.33,NULL,NULL
+Reddit 308,NULL,Software Engineer,UHN (DATA Team),20,NULL,2023
+Reddit 309,3,NULL,Ultimate Software,33,NULL,NULL
+Reddit 310,2,NULL,Union Bank of Switzerland (UBS Group AG),24,NULL,NULL
+Reddit 311,1,NULL,Untether AI,23,NULL,NULL
+Reddit 312,NULL,NULL,Uplift,38,NULL,NULL
+Reddit 313,NULL,NULL,Veeva Systems,35,NULL,NULL
+Reddit 314,NULL,NULL,Vendia,74.39,NULL,NULL
+Reddit 315,1,NULL,Veriday,20,NULL,NULL
+Reddit 316,4,NULL,Versa Networks,55,NULL,2023
+Reddit 317,2,NULL,Versett,28,NULL,NULL
+Reddit 318,4,NULL,VerticalScope,30,NULL,NULL
+Reddit 319,4,NULL,?Vidyard,33,NULL,2023
+Reddit 321,3,NULL,Voiceform,30,NULL,NULL
+Reddit 322,4,NULL,Waabi Innovation,52,500/wk stipend (3rd year),NULL
+Reddit 323,2,NULL,Wattpad,26,NULL,NULL
+Reddit 323,4,NULL,Wattpad,35,NULL,NULL
+Reddit 323,6,NULL,Wattpad,37,NULL,NULL
+Reddit 324,3,NULL,Wayfair,64.93,Housing stipend,2023
+Reddit 325,4,NULL,Wealthsimple,43,NULL,NULL
+Reddit 326,2,NULL,Wind River,24,NULL,NULL
+Reddit 327,2,NULL,Wish,44,NULL,NULL
+Reddit 327,5,NULL,Wish,52.5,NULL,NULL
+Reddit 328,1,NULL,WSIB Innovation Lab,29.5,NULL,NULL
+Reddit 328,2,NULL,WSIB Innovation Lab,30.25,NULL,NULL
+Reddit 329,1,NULL,Xanadu,30,NULL,NULL
+Reddit 330,NULL,NULL,Yext,67.63,5k USD stipend,NULL
+Reddit 332,3,NULL,Zenreach/Greenfield,29,NULL,NULL
+Reddit 333,NULL,NULL,Zighra,40,NULL,NULL
