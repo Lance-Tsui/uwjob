@@ -15,6 +15,7 @@ class PositionFetch {
             try {
                 val response: HttpResponse = client.get(url)
                 val responseData: String = response.bodyAsText()
+                println(responseData)
                 parsePositions(responseData)
             } catch (e: Exception) {
                 println(e)
@@ -27,7 +28,7 @@ class PositionFetch {
 
     fun parsePositions(data: String): List<Position> {
         val lines = data.split("\n")
-        return lines.drop(1)
+        return lines
             .filter { it.isNotEmpty() }
             .map { line ->
                 val parts = line.split(",")
@@ -36,7 +37,7 @@ class PositionFetch {
     }
 
     fun fetchPosition(): List<Position> {
-        return fetchRemoteFileAndParse("https://frc6399.com/Position.csv")
+        return fetchRemoteFileAndParse("http://frc6399.com/conn-position.php")
     }
 
 }

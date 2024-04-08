@@ -22,29 +22,40 @@ class DataRepository {
         return reportInfos.find { it.reportId == reportId }
     }
 
-    fun getCommentsByReportId(reportId: Int): List<String> {
-        val positionId = getPositionByReportId(reportId)?.positionId
-        return reportInfos.filter { it.positionId == positionId }.map { it.comment }
-    }
-
     fun getCountByReportId(reportId: Int): Int {
         return reportInfos.count { it.reportId == reportId }
     }
 
-    fun getSumRatingByReportId(reportId: Int): Int {
-        return reportInfos.filter { it.reportId == reportId }.sumOf { it.rating }
+    fun getReportsByPositionId(positionId: Int): List<Report> {
+        return reports.filter {it.positionId == positionId}
     }
+
+    fun getCommentsByReportId(reportId: Int): List<String> {
+        val positionId = getPositionByReportId(reportId)?.positionId
+
+        val reportList = positionId?.let { getReportsByPositionId(it) } ?: emptyList()
+
+        val reportIds = reportList.map { it.reportId }
+
+        return reportInfos.filter { reportIds.contains(it.reportId) }.map { it.comment }
+    }
+
 
     fun getAvgRatingByReportId(reportId: Int): Float {
         val positionId = getPositionByReportId(reportId)?.positionId
-        val reportInfosForPosition = reportInfos.filter { it.positionId == positionId }
-        val totalRatings = reportInfosForPosition.sumOf { it.rating }
-        val count = reportInfosForPosition.size
-        return if (count > 0) totalRatings.toFloat() / count else 0f
+
+        val reportIds = positionId?.let { getReportsByPositionId(it) }?.map { it.reportId } ?: emptyList()
+
+        val filteredReports = reportInfos.filter { reportIds.contains(it.reportId) }
+
+        if (filteredReports.isEmpty()) return 0f
+
+        return filteredReports.map { it.rating }.average().toFloat()
     }
 
-    fun getReportInfosByReportId(reportId: Int): List<ReportInfo> {
-        return reportInfos.filter { it.reportId == reportId }
+
+    fun getPositionById(positionId: Int?, positions: List<Position>): Position? {
+        return positions.find { it.positionId == positionId }
     }
 
     fun getStudentPersonalInfoByReportId(reportId: Int): StudentPersonalInfo? {

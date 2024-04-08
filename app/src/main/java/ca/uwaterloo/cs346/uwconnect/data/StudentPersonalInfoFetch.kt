@@ -27,15 +27,15 @@ class StudentPersonalInfoFetch {
 
     fun parseStudentPersonalInfo(data: String): List<StudentPersonalInfo> {
         val lines = data.split("\n")
-        return lines.drop(1)
+        return lines
             .filter { it.isNotEmpty() }
             .map { line ->
                 val parts = line.split(",")
-                StudentPersonalInfo(parts[0].toInt(), parts[1], parts[3])
+                StudentPersonalInfo(parts[0].toInt(), parts[1], parts[2])
             }
     }
 
     fun fetchStudentPersonalInfo(): List<StudentPersonalInfo> {
-        return fetchRemoteFileAndParse("https://frc6399.com/StudentPersonalInfo.csv")
+        return fetchRemoteFileAndParse("http://frc6399.com/conn-studentpersonalinfo.php")
     }
 }

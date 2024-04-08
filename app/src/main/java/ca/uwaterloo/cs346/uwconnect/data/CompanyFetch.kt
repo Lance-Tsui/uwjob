@@ -27,7 +27,7 @@ class CompanyFetch {
 
     fun parseCompanies(data: String): List<Company> {
         val lines = data.split("\n")
-        return lines.drop(1)
+        return lines
             .filter { it.isNotEmpty() }
             .map { line ->
                 val parts = line.split(",")
@@ -36,7 +36,7 @@ class CompanyFetch {
     }
 
     fun fetchCompany(): List<Company> {
-        return fetchRemoteFileAndParse("https://frc6399.com/Company.csv")
+        return fetchRemoteFileAndParse("http://frc6399.com/conn-company.php")
 
     }
 
