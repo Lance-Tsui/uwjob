@@ -78,4 +78,7 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     implementation("io.ktor:ktor-client-android:2.3.9")
+    implementation 'io.ktor:ktor-client-android'
+    implementation 'io.ktor:ktor-client-serialization'
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
 }

@@ -15,8 +15,53 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.*
 import ca.uwaterloo.cs346.uwconnect.MainActivity
+import io.ktor.client.*
+import io.ktor.client.engine.android.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import android.util.Base64
+import kotlinx.coroutines.*
+import java.io.File
+import java.security.MessageDigest
 
 class LoginPage : ComponentActivity() {
+    fun hashPassword(password: String): String {
+        val md = MessageDigest.getInstance("SHA-512")
+        val digest = md.digest(password.toByteArray())
+        return digest.joinToString("") { "%02x".format(it) }
+    }
+
+
+
+    fun AuthenticateAndRequestToken(username: String, password: String) : Boolean {
+        val client = HttpClient(Android)
+        val hashedPassword = hashPassword(password)
+        val authString = "$username:$hashedPassword"
+        val encodedAuthString = Base64.encodeToString(authString.toByteArray(Charsets.UTF_8), Base64.NO_WRAP)
+        var result: Boolean = false
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response: HttpResponse = client.post("http://10.0.2.2:8443/login") {
+                    header(HttpHeaders.Authorization, "Basic $encodedAuthString")
+                }
+                if (response.status == HttpStatusCode.OK) {
+                    // Parse this JSON response to get the token
+                    val token = response.bodyAsText()
+                    // Store the token for future use
+                    File("token.txt").writeText(token)
+                    result = true
+                } else {
+                    // Handle authentication failure
+                    result = false
+                }
+            } catch (e: Exception) {
+                // Handle request error
+                result = false
+            }
+        }
+        return result
+    }
 
     private fun fakeAuthenticate(email:String, password:String) : Boolean{
         // placeholder that needs to be replaced with the real thing
@@ -34,7 +79,7 @@ class LoginPage : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LoginPageContent { email, password ->
-                if (fakeAuthenticate(email, password)) {
+                if (AuthenticateAndRequestToken(email, password)) {
                     // upon success, login to home page
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
