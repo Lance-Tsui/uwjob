@@ -53,11 +53,11 @@ data class ReportBenefit(
 @Serializable
 data class ReportInfo(
     val rating: Float,
-    val report_date: String,
-    val comment: String,
-    val student_year: Int,
-    val student_semester: Int,
-    val student_workterm_number: Int,
+    val report_date: String?,
+    val comment: String?,
+    val student_year: Int?,
+    val student_semester: Int?,
+    val student_workterm_number: Int?,
     val p_id: Int,
     val r_id: Int
 )
@@ -65,7 +65,7 @@ data class ReportInfo(
 @Serializable
 data class StudentPersonalInfo(
     val student_name: String,
-    val birthday: String,
+    val birthday: String?,
     val gender: String,
     val email: String,
     val pwd: Int,
