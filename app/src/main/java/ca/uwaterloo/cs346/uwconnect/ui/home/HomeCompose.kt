@@ -20,6 +20,18 @@ import androidx.compose.runtime.remember
 import ca.uwaterloo.cs346.uwconnect.R
 import androidx.fragment.app.Fragment
 import androidx.compose.ui.platform.ComposeView
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.request.forms.FormDataContent
+import io.ktor.client.request.header
+import io.ktor.client.request.post
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.Parameters
+import io.ktor.util.InternalAPI
+import kotlinx.coroutines.runBlocking
 
 
 class HomeCompose : Fragment() {
@@ -160,14 +172,16 @@ fun postReview() {
         OutlinedTextField(
             value = company,
             onValueChange = { company = it },
-            label = { Text("Company") }
+            label = { Text("Company") },
+            maxLines = 1
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         OutlinedTextField(
             value = position,
             onValueChange = { position = it },
-            label = { Text("Position") }
+            label = { Text("Position") },
+            maxLines = 1
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -190,11 +204,37 @@ fun postReview() {
 
         Button(
             onClick = {
-                // Handle the submission logic here
-                // For example, use postReviewViewModel.postReview(company.text, position.text, review.text, rating)
-            }
+                postReview(company.text, position.text, review.text, rating)
+
+                company = TextFieldValue("")
+                position = TextFieldValue("")
+                review = TextFieldValue("")
+                rating = 0f
+            },
+            enabled = company.text.isNotBlank() && position.text.isNotBlank() && review.text.isNotBlank() && rating > 0
         ) {
             Text(text = "Submit")
         }
     }
+}
+
+@OptIn(InternalAPI::class)
+fun postReview(company: String, position: String, review: String, rating: Float) = runBlocking {
+    val client = HttpClient(Android) {
+        install(DefaultRequest) {
+            header(HttpHeaders.ContentType, ContentType.Application.FormUrlEncoded)
+        }
+    }
+
+    val response: HttpResponse = client.post("http://frc6399.com/conn-postreview.php") {
+        // 用实际的参数替换以下字段
+        body = FormDataContent(Parameters.build {
+            append("company", company.trim())
+            append("position", position.trim())
+            append("review", review.trim())
+            append("rating", rating.toString())
+        })
+    }
+
+    client.close()
 }
