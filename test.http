@@ -1,0 +1,26 @@
+GET http://127.0.0.1:8080/benefit
+accept: application/json
+
+###
+GET http://127.0.0.1:8080/company
+accept: application/json
+
+###
+GET http://127.0.0.1:8080/prog
+accept: application/json
+
+###
+GET http://127.0.0.1:8080/report
+accept: application/json
+
+###
+GET http://127.0.0.1:8080/reportBenefit
+accept: application/json
+
+###
+GET http://127.0.0.1:8080/reportInfo
+accept: application/json
+
+###
+GET http://127.0.0.1:8080/studentPersonalInfo
+accept: application/json

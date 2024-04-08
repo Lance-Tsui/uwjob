@@ -1,6 +1,6 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.23'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.0'
     id 'io.ktor.plugin' version '2.3.9'
 }
 
@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation "com.microsoft.sqlserver:mssql-jdbc:12.4.2.jre11"
     implementation "io.ktor:ktor-server-core-jvm"
     implementation "io.ktor:ktor-server-content-negotiation-jvm"
     implementation "io.ktor:ktor-serialization-kotlinx-json-jvm"
