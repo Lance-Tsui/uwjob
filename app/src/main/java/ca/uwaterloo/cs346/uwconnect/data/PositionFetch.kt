@@ -37,7 +37,7 @@ class PositionFetch {
     }
 
     fun fetchPosition(): List<Position> {
-        return fetchRemoteFileAndParse("https://frc6399.com/conn-position.php")
+        return fetchRemoteFileAndParse("http://frc6399.com/conn-position.php")
     }
 
 }

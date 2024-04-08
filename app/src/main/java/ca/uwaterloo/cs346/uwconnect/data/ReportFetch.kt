@@ -37,6 +37,6 @@ class ReportFetch {
     }
 
     fun fetchReport(): List<Report> {
-        return fetchRemoteFileAndParse("https://frc6399.com/conn-report.php")
+        return fetchRemoteFileAndParse("http://frc6399.com/conn-report.php")
     }
 }

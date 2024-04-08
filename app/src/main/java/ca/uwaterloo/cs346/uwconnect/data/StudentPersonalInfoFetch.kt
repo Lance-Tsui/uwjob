@@ -36,6 +36,6 @@ class StudentPersonalInfoFetch {
     }
 
     fun fetchStudentPersonalInfo(): List<StudentPersonalInfo> {
-        return fetchRemoteFileAndParse("https://frc6399.com/conn-studentpersonalinfo.php")
+        return fetchRemoteFileAndParse("http://frc6399.com/conn-studentpersonalinfo.php")
     }
 }

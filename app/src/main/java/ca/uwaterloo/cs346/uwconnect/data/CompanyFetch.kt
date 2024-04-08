@@ -36,7 +36,7 @@ class CompanyFetch {
     }
 
     fun fetchCompany(): List<Company> {
-        return fetchRemoteFileAndParse("https://frc6399.com/conn-company.php")
+        return fetchRemoteFileAndParse("http://frc6399.com/conn-company.php")
 
     }
 
