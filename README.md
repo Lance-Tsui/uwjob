@@ -24,3 +24,18 @@ Android app
  - Lance Xu,   shizheng.xu@uwaterloo.ca
  - Rai Dai,    r24dai@uwaterloo.ca
  - Qin Liu,    q285liu@uwaterloo.ca
+
+ ## API
+Supports GET requests from an Azure database.
+Request return the contents of the table.
+
+ - GET http://127.0.0.1:8080/benefit
+ - GET http://127.0.0.1:8080/company
+ - GET http://127.0.0.1:8080/prog
+ - GET http://127.0.0.1:8080/report
+ - GET http://127.0.0.1:8080/reportBenefit
+ - GET http://127.0.0.1:8080/reportInfo
+ - GET http://127.0.0.1:8080/studentPersonalInfo
+
+ The API project should be built and run from the KtorAPI directory
+ 
