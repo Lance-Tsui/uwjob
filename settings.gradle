@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "UWConnect"
-include ':app', ':ktorAPI', 'ktorServer'
+include ':app'
