@@ -37,5 +37,6 @@ Request return the contents of the table.
  - GET http://127.0.0.1:8080/reportInfo
  - GET http://127.0.0.1:8080/studentPersonalInfo
 
- The API project should be built and run from the KtorAPI directory
- 
+The API project should be built and run from the KtorAPI directory.
+Since the API is hosted locally, a Azure blocks unregistered IP adresses. 
+Contact e2roth@uwaterloo.ca to register your IP address.
